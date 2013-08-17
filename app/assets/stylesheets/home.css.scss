@@ -14,7 +14,27 @@ li {
     color:black!important;
     font-size:85%!important;
     float:right!important;
-    // position:absolute!important;
-    // right:0px!important;
-    // top:0px!important;
+}
+
+#logo h1{
+	font-size:45px;
+	text-align:center;
+}
+
+#strapline h3{
+	font-style:italic;
+	padding-top:18px;
+	text-align:center;
+}
+
+#buy a{
+	text-decoration:none!important;
+}
+
+#middlenav{
+	text-align:center;
+}
+
+#middlenav li{
+	padding:20px;
 }
