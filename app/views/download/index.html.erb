@@ -5,11 +5,15 @@
 		<h3>CHECKOUT</h3><br>
 		<div class="basket">
 		</div>
+		<div class="subtotal" data-subtotal="10">
+		</div>
 	</div>
 
   <% @magazine.each do |x| %>
-	  <div class="span8 magazine_data" data-price="<%=x.price%>">
+	  <div class="span8 magazine_data" data-price="<%=x.price%>" data-name="<%=x.name%>">
 	    <%=image_tag x.image_url, :width => 200 %><br>
+	    <p><%=x.name %></p>
+	    <p><%=x.issue_number%></p>
 	    <p>£<%= x.price %></p>
 	    <button class="add_to_basket">ADD TO BASKET</button>
 	  <%end%>
