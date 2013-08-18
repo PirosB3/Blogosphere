@@ -34,7 +34,8 @@
 		</div>
 	</div>
 	
-  <div id="middlenav" class="nav span8">
+	<div class="row-fluid">
+    <div id="middlenav" class="span6">
 			<ul>
 				<li>ABOUT US</li>
 				<li>EDITORS</li>
@@ -43,7 +44,7 @@
            data-toggle="dropdown"
            href="#">
            BUY
-           <b class="caret"></b>
+            <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <a class="brand" href="#">PRINT</a>
@@ -52,24 +53,48 @@
         </li>
 	    </ul>
 	</div>
-    
 </header>
 
-<section class="grid_12" class="magazine_section">
-		<%=image_tag('test_image.png')%>
+<div class="row-fluid" id="header-divider">
+</div>
+
+<section class="magazine_section">
+	<div class="row-fluid">
+		<div class="span2">
+			<%=image_tag('test_image.png', :width => 200)%>
+		</div>
+		<div class="span2">
+			<%=image_tag('test_image.png', :width => 200)%>
+		</div>
+		<div class="span3">
+			<%=image_tag('test_image.png', :width => 200)%>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span3">
+			<%=image_tag('test_image.png')%>
+		</div>
+		<div class="span3">
+			<%=image_tag('test_image.png')%>
+		</div>
+		<div class="span3">
+			<%=image_tag('test_image.png')%>
+		</div>
+	</div>
 </section>
 
-<footer class="footer">
-	<ul type="none">
-		<li>TERMS OF WEBSITE USE</li>
-		<li>TERMS AND CONDITIONS</li>
-		<li>PRIVACY</li>
-		<li>CONTACT US</li>
-		<li>TWITTER</li>
-		<li>FACEBOOK</li>
-	</ul>
+<footer class="footer row-fluid">
+	<div id="footerwrapper" class="span12">
+		<ul>
+			<li>TERMS OF WEBSITE USE</li>
+			<li>TERMS AND CONDITIONS</li>
+			<li>PRIVACY</li>
+			<li>CONTACT US</li>
+			<li>TWITTER</li>
+			<li>FACEBOOK</li>
+		</ul>
+	</div>
 </footer>
-
 
 
 

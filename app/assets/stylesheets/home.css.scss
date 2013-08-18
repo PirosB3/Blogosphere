@@ -31,10 +31,24 @@ li {
 	text-decoration:none!important;
 }
 
-#middlenav{
+#middlenav, .footer ul{
 	text-align:center;
 }
 
-#middlenav li{
-	padding:20px;
+#middlenav li, .footer li{
+	padding-right:15px;
+	padding-left:15px;
+	border-right: 1px solid grey;
 }
+
+#middlenav li:first-child, .footer li:first-child{
+	border-left: 1px solid grey;
+}
+
+#header-divider{
+	border-top:2px solid lightgrey;
+	padding:5px;
+}
+
+
+
