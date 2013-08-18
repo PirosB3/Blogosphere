@@ -18,21 +18,15 @@ li {
 
 #logo h1{
 	font-size:45px;
-	text-align:center;
 }
 
 #strapline h3{
 	font-style:italic;
 	padding-top:18px;
-	text-align:center;
 }
 
 #buy a{
 	text-decoration:none!important;
-}
-
-#middlenav, .footer ul{
-	text-align:center;
 }
 
 #middlenav li, .footer li{
@@ -47,8 +41,23 @@ li {
 
 #header-divider{
 	border-top:2px solid lightgrey;
+	margin-bottom:15px;
+}
+
+.float_images{
+	float:left;
 	padding:5px;
 }
+
+#footer-divider{
+	margin-top:15px;
+	border-top:2px solid lightgrey;
+}
+
+.footer ul{
+	text-align:center;
+}
+
 
 
 
