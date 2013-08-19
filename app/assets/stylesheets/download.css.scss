@@ -1,3 +1,26 @@
 // Place all the styles related to the download controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#checkout{
+	height:700px;
+	margin-top:10px;
+}
+
+#mag_name, #mag_width{
+	width:50%;
+	float:left;
+}
+
+
+.magazine_data{
+	display:inline;
+	margin: 15px 30px;
+}
+
+.magazine_data img{
+	margin-bottom:10px;
+}
+
+.add_to_basket{
+	margin-top:10px;
+}

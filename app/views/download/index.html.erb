@@ -1,21 +1,24 @@
 <div class="row-fluid" id="header-divider">
 </div>
 <div class="fluid-row">
-	<div class="span3">
-		<h3>CHECKOUT</h3><br>
+	<div class="span3" id="checkout">
+		<h3>CART</h3>
+		<p>PRODUCT NAME:</p>
 		<div class="basket">
 		</div>
-		<div class="subtotal" data-subtotal="10">
+		SUBTOTAL:
+		<div class="subtotal" data-subtotal="0">£
 		</div>
 	</div>
 
   <% @magazine.each do |x| %>
-	  <div class="span8 magazine_data" data-price="<%=x.price%>" data-name="<%=x.name%>">
+	<div class="span3 magazine_data" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
 	    <%=image_tag x.image_url, :width => 200 %><br>
-	    <p><%=x.name %></p>
-	    <p><%=x.issue_number%></p>
-	    <p>£<%= x.price %></p>
+	    <div id="mag_name"><%=x.name%></div>
+	    <div id="mag_price">£<%= x.price %></div>
 	    <button class="add_to_basket">ADD TO BASKET</button>
-	  <%end%>
 	</div>
+	<%end%>
 </div>
+
+
