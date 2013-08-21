@@ -33,10 +33,15 @@
    
         <!-- Everything you want hidden at 940px or less, place within here -->
         <div class="nav-collapse collapse">
+            <% if user_signed_in? %>
             <a class="brand" href="">SIGN OUT</a>
+            <a class="brand" href="#">CHECKOUT</a>
+            <a class="brand" href="">WELCOME <%=current_user.email%></a>
+            <% end %>
+            <%# if user_signed_in != true %>
             <a class="brand" href="/users/sign_up">SIGN UP</a>
             <a class="brand" href="/users/sign_in">SIGN IN</a>
-            <a class="brand" href="#">CHECKOUT</a>
+            <%# end %>
           <!-- .nav, .navbar-search, .navbar-form, etc -->
         </div>
       </div>
@@ -55,7 +60,8 @@
     <div class="span1">
     </div>
   </div>
-  
+
+  <%#   if user_signed_in? %>
   <div class="row-fluid">
     <div class="span1">
     </div>
@@ -63,7 +69,7 @@
       <ul>
         <li><a href="/">HOME</a></li>
         <li><a href="/about/index">ABOUT US</a></li>
-        <li>EDITORS</li>
+        <li><a href="/editors/index">EDITORS</a></li>
         <li class="dropdown">
           <a id="buy" class="dropdown-toggle"
            data-toggle="dropdown"
@@ -78,6 +84,7 @@
         </li>
       </ul>
   </div>
+  <%# end %>
 </header>
 
 <%= yield %>

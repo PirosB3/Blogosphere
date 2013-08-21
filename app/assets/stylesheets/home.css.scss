@@ -6,10 +6,6 @@
 // 	border-top:34px solid lightgrey;
 // }
 
-li {
-	display:inline;
-}
-
 .brand{
     color:black!important;
     font-size:85%!important;
@@ -25,14 +21,21 @@ li {
 	padding-top:18px;
 }
 
-#buy a{
-	text-decoration:none!important;
-}
-
 #middlenav li, .footer li{
 	padding-right:15px;
 	padding-left:15px;
 	border-right: 1px solid grey;
+	display:inline;
+}
+
+#middlenav li a, .footer li a{
+	border-bottom:none!important;
+	opacity:.5;
+}
+
+#middlenav li a:hover, .footer li a:hover{
+	border-bottom:none!important;
+	opacity:1;
 }
 
 #middlenav li:first-child, .footer li:first-child{

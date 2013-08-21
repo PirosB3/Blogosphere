@@ -1,4 +1,6 @@
 Blogosphere::Application.routes.draw do
+  get "editors/index"
+
   get "download/index"
   post "download/create_checkout"
 

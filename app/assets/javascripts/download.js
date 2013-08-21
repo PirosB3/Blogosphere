@@ -19,11 +19,15 @@ $(document).ready(function(){
             data: {id: id},
             success: function(){
             var h6 = $("<h6 id='magazine_checkout'>");
+            var p = $("<p id='trash_icon'>");
+            
             //add a delete link in here so that you can click on it and destroy the checkout item
             console.log(h6);
-            h6.html(name);
+            updated_h6 = h6.html(name);
+            updated_p = p.html('hello');
                 
-            $('.basket').append(h6);
+            $('.basket').html(updated_h6);
+            $('.basket').append(updated_p);
                 increaseSubtotal(amount);
             
             }
@@ -47,6 +51,13 @@ $(document).ready(function(){
     }
     //a function that removes an item from the basket and then calls the updateSubtotal function
 
+
+    $('#trash_icon').on('click', function(){
+        console.log(fjdfhosfnl);
+        $(this).hide();
+    });
+
+    
 	
 
 })
