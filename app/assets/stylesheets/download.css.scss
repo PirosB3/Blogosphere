@@ -14,7 +14,7 @@
 
 .magazine_data{
 	display:inline;
-	margin: 15px 30px;
+	margin: 15px 10px;
 }
 
 .magazine_data img{
@@ -23,4 +23,13 @@
 
 .add_to_basket{
 	margin-top:10px;
+}
+
+#trash_icon{
+	width:30px;
+}
+
+#basket{
+	width:100px;
+	float:left;
 }
