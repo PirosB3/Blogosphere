@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     //when a user signs in make sure that all their checkouts are deleted
 	$('.add_to_basket').on('click', function(){
+
 		//getting the cost of the magazine out of the data attributes
         var magazine_data = $(this).closest('.magazine_data');
         //getting the cost,name and id out of the magazine_data data attributes
@@ -21,24 +22,30 @@ $(document).ready(function(){
             var updated_h6 = h6.html(name);
             var img = $("<img class='trash_icon'></p>");
             img.attr('src', 'http://b.dryicons.com/images/icon_sets/symbolize_icons_set/png/128x128/trash.png');
-            wrapper_div.append(updated_h6)
-                       .append(img);
+            updated_h6.append(img);
+            wrapper_div.append(updated_h6);
             $('#basket').append(wrapper_div);
+            increaseSubtotal(amount);
 
             //trash icon here, you can click on it and destroy the checkout item
-                
-            // $('.basket').html(updated_h6);
-            var updatemagazinecost = $('#basket').data('magazinecost', amount);
-            var updatemagazinedata = $('#basket').data('magazinename', name);
-                $('.trash_icon').on('click', function(){
-                    magazine_name = $(this).prev().text();
-                    // magazine_cost = $('#basket').data('magazinecost');
-                });
             
-            increaseSubtotal(amount);
+            $(wrapper_div).find('.trash_icon').on('click', function(){
+                magazine_name = $(this).prev().text();
+                amount = $(this).parent().data('cost');
+                $.ajax({
+                    url: "/download/create_checkout",
+                    type: 'POST',
+                    data: {magazine_name: magazine_name},
+                    success: function(){
+                    decreaseSubtotal(amount);
+                    }
+                 });//END ajax
+                $(this).parent().fadeOut();
+            });//END trash_icon on_click
+            
             
             }
-        });
+        });//END AJAX
 
 	})//END add basket click
 
@@ -55,32 +62,13 @@ $(document).ready(function(){
         $('.subtotal').append(h6);
     }//END increaseSubtotal
 
-    //a function that removes an item from the basket and then calls the updateSubtotal function
-    $('.wrapper').on('click', function(){
-        magazine_name = $(this).prev().text();
-        // alert(hello);
-        // console.log(this);
-        // console.log(this.parent());
-        // magazine_name = $(this).data('magazinename');
-        // magazine_cost = $(this).data('magazinecost');
-        // console.log(this);
-        // $(this).remove();
-        // //send an ajax request to the controller to destroy a checkout
-        // $.ajax({
-        //     url: "/download/create_checkout",
-        //     type: 'POST',
-        //     data: {magazine_name: magazine_name},
-        //     success: function(){
-        //         decreaseSubtotal(magazine_cost);
-        //     }
-        // });//END ajax
 
-    })//END #basket onclick
-
-    function decreaseSubtotal(magazine_cost){
+    function decreaseSubtotal(amount){
         $('.subtotal').html('');
         var current_subtotal = $('.subtotal').data('subtotal');
-        var updated_subtotal = current_subtotal - magazine_cost;
+        console.log(current_subtotal);
+        var updated_subtotal = current_subtotal - amount;
+        console.log(updated_subtotal);
         //updating the subtotal data attribute in the DOM
         var updatedsub = $('.subtotal').data('subtotal', updated_subtotal);
         var h6 = $("<h6>");
