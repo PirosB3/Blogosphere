@@ -11,7 +11,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -35,11 +35,11 @@
         <!-- Everything you want hidden at 940px or less, place within here -->
         <div class="nav-collapse collapse top_nav">
             <% if user_signed_in? %>
-            <a class="brand" href="">SIGN OUT</a>
-            <a class="brand" href="#">CHECKOUT</a>
+            <%=link_to 'SIGN OUT', destroy_user_session_path, :method => :delete, :class => 'brand' %>
+            <!-- <a class="brand" href="/users/sign_out">SIGN OUT</a> -->
             <a class="brand" href="">WELCOME <%=current_user.email%></a>
             <% end %>
-            <%# if user_signed_in != true %>
+            <%# if user_signed_in !== true %>
             <a class="brand" href="/users/sign_up">SIGN UP</a>
             <a class="brand" href="/users/sign_in">SIGN IN</a>
             <%# end %>
