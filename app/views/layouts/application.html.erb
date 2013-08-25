@@ -11,6 +11,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -32,7 +33,7 @@
         <!-- Be sure to leave the brand out there if you want it shown -->
    
         <!-- Everything you want hidden at 940px or less, place within here -->
-        <div class="nav-collapse collapse">
+        <div class="nav-collapse collapse top_nav">
             <% if user_signed_in? %>
             <a class="brand" href="">SIGN OUT</a>
             <a class="brand" href="#">CHECKOUT</a>
@@ -77,7 +78,7 @@
            BUY
             <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style='min-width: 30%;'>
             <a class="brand" href="#">PRINT</a><br>
             <a class="brand" href="/download/index">DOWNLOAD</a>
           </ul>

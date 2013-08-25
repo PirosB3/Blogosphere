@@ -31,7 +31,9 @@ $(document).ready(function(){
             
             $(wrapper_div).find('.trash_icon').on('click', function(){
                 magazine_name = $(this).prev().text();
-                amount = $(this).parent().data('cost');
+                console.log(magazine_name);
+                amount = $(this).closest('.wrapper').data('cost');
+                console.log(amount);
                 $.ajax({
                     url: "/download/create_checkout",
                     type: 'POST',
