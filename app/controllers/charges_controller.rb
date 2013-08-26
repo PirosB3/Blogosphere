@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
 	# end
 
 	def create
-		binding.pry
+		# binding.pry
 		# Set your secret key: remember to change this to your live secret key in production
 		# See your keys here https://manage.stripe.com/account
 		Stripe.api_key = "sk_test_aP5rgF9InbdDGENtMnZevqT4"
@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
 
 		# Charge the Customer instead of the card
 		Stripe::Charge.create(
-		    :amount => 1000, # in cents
+		    :amount => params[:subtotal], # in cents, is currently in pounds need to change
 		    :currency => "gbp",
 		    :customer => customer.id
 		)
