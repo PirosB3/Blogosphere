@@ -14,6 +14,15 @@ class DownloadController < ApplicationController
   end
 
   def create_checkout
-  	# user = current
+  	@user = current_user
+    @id = params[:id]
+    @checkout = Checkout.create(:magazine_id => params[:id], :user_id => current_user.id)
+  end
+
+  def destroy_checkout
+    @magazine = Magazine.where(:name => params[:magazine_name])
+    # binding.pry
+    @checkout = Checkout.where(:user_id => current_user.id, :magazine_id => @magazine[0].id)
+    @checkout.destroy_all
   end
 end

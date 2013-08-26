@@ -35,14 +35,14 @@
         <!-- Everything you want hidden at 940px or less, place within here -->
         <div class="nav-collapse collapse top_nav">
             <% if user_signed_in? %>
-            <%=link_to 'SIGN OUT', destroy_user_session_path, :method => :delete, :class => 'brand' %>
-            <!-- <a class="brand" href="/users/sign_out">SIGN OUT</a> -->
-            <a class="brand" href="">WELCOME <%=current_user.email%></a>
-            <% end %>
+              <a class="brand" href="">welcome <%=current_user.email%></a>
+              <%=link_to 'SIGN OUT', destroy_user_session_path, :method => :delete, :class => 'brand' %>
+              <!-- <a class="brand" href="/users/sign_out">SIGN OUT</a> -->
+            <% else %>
             <%# if user_signed_in !== true %>
-            <a class="brand" href="/users/sign_up">SIGN UP</a>
-            <a class="brand" href="/users/sign_in">SIGN IN</a>
-            <%# end %>
+              <a class="brand" href="/users/sign_up">SIGN UP</a>
+              <a class="brand" href="/users/sign_in">SIGN IN</a>
+            <% end %>
           <!-- .nav, .navbar-search, .navbar-form, etc -->
         </div>
       </div>

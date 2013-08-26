@@ -39,12 +39,11 @@ $(document).ready(function(){
                 //trash icon here, you can click on it and destroy the checkout item
                 
                 $(wrapper_div).find('.trash_icon').on('click', function(){
-                    magazine_name = $(this).prev().text();
-                    console.log(magazine_name);
+                    magazine_name = $(this).parent().text();
                     amount = $(this).closest('.wrapper').data('cost');
                     console.log(amount);
                     $.ajax({
-                        url: "/download/create_checkout",
+                        url: "/download/destroy_checkout",
                         type: 'POST',
                         data: {magazine_name: magazine_name},
                         success: function(){
@@ -78,6 +77,8 @@ $(document).ready(function(){
         h6.html('£' + updated_subtotal);
         $(subtotal_text).append(h6);
         $('.subtotal').append(subtotal_text);
+        var checkout_link = $("<form name='input' action='/charges/new' method='post'><input type='submit' value='proceed to checkout'><input type='hidden' name='subtotal' value='"+amount+"'></form>"); 
+        $('#payment_checkout').html(checkout_link);
     }//END increaseSubtotal
 
 

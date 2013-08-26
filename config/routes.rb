@@ -4,10 +4,17 @@ Blogosphere::Application.routes.draw do
   get "download/index"
   get "download/show"
   post "download/create_checkout"
+  post "download/destroy_checkout"
 
   get "about/index"
 
   devise_for :users
+
+  get "charges/index"
+  post "charges/new"
+  post "charges/create"
+  # resources :charges
+  # post "charges/subtotal"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
