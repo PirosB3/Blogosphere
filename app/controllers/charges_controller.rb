@@ -16,6 +16,8 @@ class ChargesController < ApplicationController
 
 		# Get the credit card details submitted by the form
 		token = params[:stripeToken]
+		@subtotal = params[:subtotal].to_i * 1000
+		# binding.pry
 
 		# Create a Customer
 		customer = Stripe::Customer.create(
@@ -25,7 +27,7 @@ class ChargesController < ApplicationController
 
 		# Charge the Customer instead of the card
 		Stripe::Charge.create(
-		    :amount => params[:subtotal], # in cents, is currently in pounds need to change
+		    :amount => subtotal, # in cents, is currently in pounds need to change
 		    :currency => "gbp",
 		    :customer => customer.id
 		)
