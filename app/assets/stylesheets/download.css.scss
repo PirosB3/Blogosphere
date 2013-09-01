@@ -7,14 +7,13 @@
 }
 
 #mag_name, #mag_width{
-	width:50%;
 	float:left;
 }
 
 
 .magazine_data{
-	display:inline;
 	margin: 15px 10px;
+	font-family: 'EB Garamond', serif;
 }
 
 .magazine_data img{
@@ -23,6 +22,7 @@
 
 .add_to_basket{
 	margin-top:10px;
+	font-family: 'EB Garamond', serif;
 }
 
 .trash_icon{
@@ -39,5 +39,11 @@ ul .dropdown-menu{
 }
 
 .trash_icon{
-margin-left: 10%;
+    margin-left: 10%;
+}
+
+#checkout_button{
+	width: 180px;
+    float: left;
+    background-color:lightgrey;
 }

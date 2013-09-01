@@ -77,7 +77,7 @@ $(document).ready(function(){
         h6.html('£' + updated_subtotal);
         $(subtotal_text).append(h6);
         $('.subtotal').append(subtotal_text);
-        var checkout_link = $("<form name='input' action='/charges/new' method='post'><input type='submit' value='proceed to checkout'><input type='hidden' name='subtotal' value='"+amount+"'></form>"); 
+        var checkout_link = $("<form name='input' action='/charges/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'><input type='hidden' name='subtotal' value='"+amount+"'></form>"); 
         $('#payment_checkout').html(checkout_link);
     }//END increaseSubtotal
 
