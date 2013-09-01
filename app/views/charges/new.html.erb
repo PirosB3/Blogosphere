@@ -1,12 +1,16 @@
 <%=render 'layouts/header'%>
-<form action="/charges/create" method="POST">
-  <script
-    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-    data-key="pk_test_cjMKtqKqJv1rcWEzUinqNbiL"
-    data-amount="2000"
-    data-name="Demo Site"
-    data-description="2 widgets ($20.00)"
-    data-image="/128x128.png">
-  </script>
-  <input type="hidden" name="subtotal" value=<%= @subtotal %>>
-</form>
+<div class="span1 sign_in_column_one">
+</div>
+<div class="span6">
+	<form action="/charges/create" method="POST">
+	  <script
+	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+	    data-key="pk_test_cjMKtqKqJv1rcWEzUinqNbiL"
+	    data-amount="2000"
+	    data-name="Demo Site"
+	    data-description="2 widgets ($20.00)"
+	    data-image="/128x128.png">
+	  </script>
+	  <input type="hidden" name="subtotal" value=<%= @subtotal %>>
+	</form>
+</div>
