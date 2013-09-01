@@ -32,6 +32,9 @@ class ChargesController < ApplicationController
 		    :currency => "gbp",
 		    :customer => customer.id
 		)
+        
+        redirect_to charges_mandrill_mailer_path
+		#redirect to the the charges controller Mandrill, need to get the users email address
 
 		# Save the customer ID in your database so you can use it later
 		# save_stripe_customer_id(user, customer.id)
@@ -39,5 +42,10 @@ class ChargesController < ApplicationController
 		# Later...
 		# customer_id = get_stripe_customer_id(user)
 
+    end
+
+    def mandrill_mailer
+    	UserMailer.welcome_email.deliver
+    	render :template => 'charges/create'
     end
 end

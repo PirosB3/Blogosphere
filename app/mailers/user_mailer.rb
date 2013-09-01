@@ -3,7 +3,8 @@ class UserMailer < ActionMailer::Base
   default from: 'blogospheremagazine.com'
 
   def welcome_email
-  	attachments["ShoreditchHouse.pdf"] = File.read("#{Rails.root}/non-public/ShoreditchHouse.pdf")
+  	#add email as an argument here so that can put it in the :to address field
+  	attachments["BlogosphereMagazine.pdf"] = File.read("#{Rails.root}/non-public/BlogosphereMagazine.pdf")
   	mail :subject => "Mandrill rides the Rails!",
   	     :to => "mathildathompson288@gmail.com",
   	     :from => "editorial@blogospheremagazine.com"

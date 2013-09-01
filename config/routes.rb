@@ -13,6 +13,7 @@ Blogosphere::Application.routes.draw do
   get "charges/index"
   post "charges/new"
   post "charges/create"
+  get "charges/mandrill_mailer"
   # resources :charges
   # post "charges/subtotal"
 
