@@ -14,6 +14,7 @@ Blogosphere::Application.routes.draw do
   post "charges/new"
   post "charges/create"
   get "charges/mandrill_mailer"
+  resources :cart, :only => [:index, :create, :destroy]
   # resources :charges
   # post "charges/subtotal"
 

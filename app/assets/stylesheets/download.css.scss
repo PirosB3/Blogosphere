@@ -23,8 +23,16 @@
 	margin-top:10px;
 }
 
+.magazine_checkout{
+  display: inline-block;
+}
+
 .trash_icon{
 	width:20px;
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  right: -10px;
 }
 
 .basket{
@@ -34,10 +42,6 @@
 
 ul .dropdown-menu{
 	width:100px!important;
-}
-
-.trash_icon{
-    margin-left: 10%;
 }
 
 #checkout_button{
