@@ -19,6 +19,10 @@ $(document).ready(function(){
         dataType: "json", 
         success: function(data) {
 
+          // Unbind all click handlers, we will re-bind them later.
+          // This avoids zombies
+          $('.trash_icon').unbind('click');
+
           // Empty the basket element, as we are using append and this function
           // gets called multiple times, we can potentially have duplicates
           BASKET.empty()
