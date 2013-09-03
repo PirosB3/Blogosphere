@@ -1,3 +1,4 @@
+// Because underscore templates clash with Rails templates, let's change the template settings to use {{= }} and {{ }}
 _.templateSettings = {
     interpolate: /\{\{\=(.+?)\}\}/g,
     evaluate: /\{\{(.+?)\}\}/g
@@ -5,30 +6,47 @@ _.templateSettings = {
 
 $(document).ready(function(){
     
+    // Define some constants, no need to call them multiple times.
     var CART_TEMPLATE = _.template($('#cart-template').html());
     var BASKET = $('#basket');
     var SUBTOTAL = $('.subtotal');
     
+    // This function calls the backend and populates the cart
     var getCartDataAndPopulatePage = function() {
       $.ajax({
         url: '/cart',
         type:'GET', 
         dataType: "json", 
         success: function(data) {
+
+          // Empty the basket element, as we are using append and this function
+          // gets called multiple times, we can potentially have duplicates
           BASKET.empty()
           data.forEach(function(el){
+
+            // Compile the template with the args coming from XHR request
             var full_cart = CART_TEMPLATE({
               name: el.name,
               price: el.price,
               id: el.id
             });
+
+            // Append them to the DOM
             BASKET.append(full_cart);
           });
+
+          // Pull out the price key from each object (hash) in  our array
+          // and sum them together
           var prices = _.pluck(data, 'price');
           var result = _.reduce(prices, function(starting_value, number){
             return starting_value + number;
           }, 0);
+
+          // Append the result to the subtotal elememet
           SUBTOTAL.text('SUBTOTAL: £' + result);
+
+          // As jQuery.live() is deprecated, we need to re-bind the click
+          // event on every new trash_icon
           $('.trash_icon').on('click', function() {
             var wrapper = $(this).parent('.wrapper')
             var id = wrapper.data('magazine-id')
@@ -65,5 +83,6 @@ $(document).ready(function(){
       addCartItem(id); 
     });
 
+    // Once the document is ready, fetch the cart data from the database
     getCartDataAndPopulatePage();
 });
