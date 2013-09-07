@@ -3,28 +3,17 @@ class CartController < ApplicationController
     # Get the cart
     # MAP each cart ID to it's model in the database (using .find )
     # return using JSON
-
-    example_data = [
-      {
-        :id => 1,
-        :name => 'MAGAZINE 1',
-        :price => 300
-      },
-      {
-        :id => 2,
-        :name => 'MAGAZINE 2',
-        :price => 100
-      },
-      {
-        :id => 3,
-        :name => 'MAGAZINE 3',
-        :price => 500
-      }
-    ]
-    render :json => example_data
+    magazinecart = []
+    session[:magazine_id].each do |x|
+      magazinecart.push(Magazine.where(:id => x))
+    end
+    magazinedata = magazinecart.flatten
+    render :json => magazinedata
   end
 
   def create
+    sessionCart = session[:magazine_id] ||= []
+    sessionCart.push(params[:id].to_i)
     # get the ID
     # add to the cart
     # render a OK status
@@ -32,6 +21,10 @@ class CartController < ApplicationController
   end
 
   def destroy
+    # binding.pry
+    id = params[:id].to_i
+    delete_id = session[:magazine_id].find { |num| num == id }
+    session[:magazine_id].delete(delete_id)
     # get the ID
     # delete from cart (take care of duplicates!)
     # render an OK status
