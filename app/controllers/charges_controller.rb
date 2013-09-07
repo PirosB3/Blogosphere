@@ -32,6 +32,7 @@ class ChargesController < ApplicationController
 		    :currency => "gbp",
 		    :customer => customer.id
 		)
+		binding.pry
         
         redirect_to charges_mandrill_mailer_path
 		#redirect to the the charges controller Mandrill, need to get the users email address

@@ -9,6 +9,7 @@ Blogosphere::Application.routes.draw do
   get "about/index"
 
   devise_for :users
+  # devise_for :users, :controllers => { :sessions => "users/sessions" }
 
   get "charges/index"
   post "charges/new"

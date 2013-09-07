@@ -21,6 +21,8 @@
               <!-- <a class="brand" href="/users/sign_out">SIGN OUT</a> -->
             <% else %>
             <%# if user_signed_in !== true %>
+               <a class="notice brand"><%= notice %></a>
+              <!--  <a class="alert brand"><%#= alert %></a> --> 
               <a class="brand" href="/users/sign_up">SIGN UP</a>
               <a class="brand" href="/users/sign_in">SIGN IN</a>
             <% end %>
