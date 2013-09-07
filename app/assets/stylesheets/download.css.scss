@@ -25,6 +25,7 @@
 
 .magazine_checkout{
   display: inline-block;
+  width:110px;
 }
 
 .trash_icon{
@@ -48,4 +49,21 @@ ul .dropdown-menu{
 	width: 180px;
     float: left;
     background-color:lightgrey;
+}
+
+.subtotal{
+    width: 150px;
+    border-top: 1px solid lightgrey;
+    padding-top:10px;
+}
+
+.download_print{
+	width: 200px;
+    margin-left: -120px;
+
+}
+
+.d_p{
+	font-size:10px;
+	border:none!important;
 }

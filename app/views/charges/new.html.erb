@@ -7,10 +7,12 @@
 	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
 	    data-key="pk_test_cjMKtqKqJv1rcWEzUinqNbiL"
 	    data-amount="2000"
-	    data-name="Demo Site"
-	    data-description="2 widgets ($20.00)"
+	    data-name="Blogosphere"
+	    data-description="Amount Payable: £<%=@subtotal%>"
 	    data-image="/128x128.png">
 	  </script>
 	  <input type="hidden" name="subtotal" value=<%= @subtotal %>>
 	</form>
 </div>
+
+<!-- include the shipping address if @magazine_type == 'print' -->

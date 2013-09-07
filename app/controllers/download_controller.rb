@@ -1,6 +1,7 @@
 class DownloadController < ApplicationController
   def index
   	@magazine = Magazine.all
+    @purchase_type = params[:print_download]
   end
 
   def show

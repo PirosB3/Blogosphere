@@ -10,6 +10,7 @@ $(document).ready(function(){
     var CART_TEMPLATE = _.template($('#cart-template').html());
     var BASKET = $('#basket');
     var SUBTOTAL = $('.subtotal');
+    var CHECKOUT = $('.payment_checkout');
     
     // This function calls the backend and populates the cart
     var getCartDataAndPopulatePage = function() {
@@ -48,6 +49,11 @@ $(document).ready(function(){
 
           // Append the result to the subtotal elememet
           SUBTOTAL.text('SUBTOTAL: £' + result);
+          
+          var magazine_type = CHECKOUT.data('type');
+          var checkout_link = $("<form name='input' action='/charges/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'><input type='hidden' name='subtotal' value='"+result+"'><input type='hidden' name='type' value='"+magazine_type+"'></form>"); 
+          $('.payment_checkout').html(checkout_link);
+
 
           // As jQuery.live() is deprecated, we need to re-bind the click
           // event on every new trash_icon

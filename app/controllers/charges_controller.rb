@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
 	def new
+		@magazine_type = params[:type]
 		@subtotal = params[:subtotal]
 
 	end

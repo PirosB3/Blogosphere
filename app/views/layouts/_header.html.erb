@@ -39,7 +39,7 @@
       <h1>BLOGOSPHERE MAGAZINE</h1>
     </div>
     <div id="strapline" class="span4">
-      <h3>'BY BLOGGERS FOR BLOGGERS'</h3>
+      <h3>'FOR BLOGGERS. ABOUT BLOGGERS'</h3>
     </div>
     <div class="span1">
     </div>
@@ -62,8 +62,12 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu" style='min-width: 30%;'>
-            <a class="brand print_download" href="#">PRINT</a><br>
-            <a class="brand print_download" href="/download/index">DOWNLOAD</a>
+            <form class="download_print" name='input' action='/download/index' method='post'><input class="d_p"type='submit' value='PRINT' id='print_button'><input type="hidden" name="print_download" value="print"></form><br>
+
+            <form class="download_print" name='input' action='/download/index' method='post'><input class="d_p" type='submit' value='DOWNLOAD' id='download_button'>
+            <input type="hidden" name="print_download" value="download"></form>
+            <!-- <a class="brand print_download" href="/download/index" data-print="print">PRINT</a><br>
+            <a class="brand print_download" href="/download/index">DOWNLOAD</a> -->
           </ul>
         </li>
       </ul>
