@@ -1,103 +1,92 @@
+// Because underscore templates clash with Rails templates, let's change the template settings to use {{= }} and {{ }}
+_.templateSettings = {
+    interpolate: /\{\{\=(.+?)\}\}/g,
+    evaluate: /\{\{(.+?)\}\}/g
+};
+
 $(document).ready(function(){
+    
+    // Define some constants, no need to call them multiple times.
+    var CART_TEMPLATE = _.template($('#cart-template').html());
+    var BASKET = $('#basket');
+    var SUBTOTAL = $('.subtotal');
+    
+    // This function calls the backend and populates the cart
+    var getCartDataAndPopulatePage = function() {
+      $.ajax({
+        url: '/cart',
+        type:'GET', 
+        dataType: "json", 
+        success: function(data) {
 
-    //when a user signs in make sure that all their checkouts are deleted
-	$('.add_to_basket').on('click', function(){
-        _this = $(this);
-        $.ajax({
-            url:"/download/show",
-            type: 'GET',
-            dataType: "json",
-            success: function(response){
-                console.log(response);
-                console.log($(this));
-                console.log(_this);
+          // Unbind all click handlers, we will re-bind them later.
+          // This avoids zombies
+          $('.trash_icon').unbind('click');
 
-    		//getting the cost of the magazine out of the data attributes
-            var magazine_data = _this.closest('.magazine_data');
-            //getting the cost,name and id out of the magazine_data data attributes
-    		var amount = magazine_data.data('price');
-    		var name = magazine_data.data('name');
-            var id = magazine_data.data('id');
+          // Empty the basket element, as we are using append and this function
+          // gets called multiple times, we can potentially have duplicates
+          BASKET.empty()
+          data.forEach(function(el){
 
-            //send an ajax request to the controller to make a new checkout
-            $.ajax({
-                url: "/download/create_checkout",
-                type: 'POST',
-                data: {id: id},
-                success: function(){
-                //put the magazine name and trash icon in a container so they can be removed together
-                var wrapper_div = $("<div class='wrapper' data-cost='"+amount+"'></div>");
-                var h6 = $("<h6 class='magazine_checkout'></h6>");
-                var updated_h6 = h6.html(name);
-                var img = $("<img class='trash_icon'></p>");
-                img.attr('src', 'http://b.dryicons.com/images/icon_sets/symbolize_icons_set/png/128x128/trash.png');
-                updated_h6.append(img);
-                wrapper_div.append(updated_h6);
-                $('#basket').append(wrapper_div);
-                increaseSubtotal(amount);
+            // Compile the template with the args coming from XHR request
+            var full_cart = CART_TEMPLATE({
+              name: el.name,
+              price: el.price,
+              id: el.id
+            });
 
-                //trash icon here, you can click on it and destroy the checkout item
-                
-                $(wrapper_div).find('.trash_icon').on('click', function(){
-                    magazine_name = $(this).parent().text();
-                    amount = $(this).closest('.wrapper').data('cost');
-                    console.log(amount);
-                    $.ajax({
-                        url: "/download/destroy_checkout",
-                        type: 'POST',
-                        data: {magazine_name: magazine_name},
-                        success: function(){
-                        decreaseSubtotal(amount);
-                        }
-                     });//END ajax
-                    $(this).parent().fadeOut();
-                });//END trash_icon on_click
-                
-                
-                }
-            });//END AJAX2
-         }, //END AJAX1
-            error: function(){
-                $('#basket').html('<h6 id="must_login">"You must sign in to add items to your basket"</h6>')
-            }
-        })
+            // Append them to the DOM
+            BASKET.append(full_cart);
+          });
 
-	})//END add basket click
+          // Pull out the price key from each object (hash) in  our array
+          // and sum them together
+          var prices = _.pluck(data, 'price');
+          var result = _.reduce(prices, function(starting_value, number){
+            return starting_value + number;
+          }, 0);
 
-	//a function that calculated the updateSubtotal everytime something is added to the basket or removed from the bakset
-    function increaseSubtotal(amount){
-    	$('.subtotal').html('');
-    	var current_subtotal = $('.subtotal').data('subtotal');
-    	var updated_subtotal = current_subtotal + amount;
-        //updating the subtotal data attribute in the DOM
-    	var updatedsub = $('.subtotal').data('subtotal', updated_subtotal);
-        var subtotal_text = $("<h6 id='subtotal_title'>SUBTOTAL:</h6>");
-        var h6 = $("<h6>");
-        //appending the updated subtotal to the DOM
-        h6.html('£' + updated_subtotal);
-        $(subtotal_text).append(h6);
-        $('.subtotal').append(subtotal_text);
-        var checkout_link = $("<form name='input' action='/charges/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'><input type='hidden' name='subtotal' value='"+amount+"'></form>"); 
-        $('#payment_checkout').html(checkout_link);
-    }//END increaseSubtotal
+          // Append the result to the subtotal elememet
+          SUBTOTAL.text('SUBTOTAL: £' + result);
 
+          // As jQuery.live() is deprecated, we need to re-bind the click
+          // event on every new trash_icon
+          $('.trash_icon').on('click', function() {
+            var wrapper = $(this).parent('.wrapper')
+            var id = wrapper.data('magazine-id')
+            destroyCartItem(id);
+          });
+        }
+      })
+    };
 
-    function decreaseSubtotal(amount){
-        $('.subtotal').html('');
-        var current_subtotal = $('.subtotal').data('subtotal');
-        console.log(current_subtotal);
-        var updated_subtotal = current_subtotal - amount;
-        console.log(updated_subtotal);
-        //updating the subtotal data attribute in the DOM
-        var updatedsub = $('.subtotal').data('subtotal', updated_subtotal);
-        var h6 = $("<h6>");
-        //appending the updated subtotal to the DOM
-        h6.html('£' + updated_subtotal);
-        $('.subtotal').append(h6);
-
+    var destroyCartItem = function(id) {
+      var url = '/cart/' + id;
+      $.ajax({
+        url: url,
+        type:'DELETE',
+        dataType:'json', 
+        success: getCartDataAndPopulatePage
+      });
+    }
+    
+    var addCartItem = function(id) {
+      $.ajax({
+        url: '/cart',
+        type:'POST',
+        dataType:'json', 
+        data: {id:id},
+        success: getCartDataAndPopulatePage
+      });
     }
 
-})//End DOM READY
-
     
-	
+    $('.add_to_basket').on('click', function(){
+      var magazine_data = $(this).closest('.magazine_data');
+      var id = magazine_data.data('id');
+      addCartItem(id); 
+    });
+
+    // Once the document is ready, fetch the cart data from the database
+    getCartDataAndPopulatePage();
+});
