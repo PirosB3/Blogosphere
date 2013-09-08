@@ -1,9 +1,17 @@
 class ChargesController < ApplicationController
 	def new
-		@magazine_type = params[:type]
-		@subtotal = params[:subtotal]
-
-	end
+		binding.pry
+		if params[:type] == 'print'
+			# binding.pry
+		    @products_total = params[:subtotal]
+		    @pandp = 1.50
+		    @subtotalwithpp = params[:subtotal].to_i + 1.5
+		else
+		    @products_total = params[:subtotal]
+		    @pandp = 0
+		    @subtotalwithpp = params[:subtotal]
+		end
+    end
 
 	# def subtotal
 	# 	binding.pry

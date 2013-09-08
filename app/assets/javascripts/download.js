@@ -5,6 +5,8 @@ _.templateSettings = {
 };
 
 $(document).ready(function(){
+     
+    $('.fashion_image').popover({ trigger: "hover" });
     
     // Define some constants, no need to call them multiple times.
     var CART_TEMPLATE = _.template($('#cart-template').html());
@@ -54,7 +56,7 @@ $(document).ready(function(){
           var checkout_link = $("<form name='input' action='/charges/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'><input type='hidden' name='subtotal' value='"+result+"'><input type='hidden' name='type' value='"+magazine_type+"'></form>"); 
           $('.payment_checkout').html(checkout_link);
 
-
+          $('.trash_icon').popover({ trigger: "hover" });
           // As jQuery.live() is deprecated, we need to re-bind the click
           // event on every new trash_icon
           $('.trash_icon').on('click', function() {
@@ -95,4 +97,9 @@ $(document).ready(function(){
 
     // Once the document is ready, fetch the cart data from the database
     getCartDataAndPopulatePage();
+    
+    //why does this not work at the bottom??
+    // $('.fashion_image').mouseover(function(){
+    //   console.log('helllooooooo')
+    // });
 });

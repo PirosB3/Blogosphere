@@ -12,12 +12,15 @@ class CartController < ApplicationController
   end
 
   def create
+    # binding.pry
     sessionCart = session[:magazine_id] ||= []
     sessionCart.push(params[:id].to_i)
     # get the ID
     # add to the cart
     # render a OK status
     render :json => { :status => 200 }
+
+    #add an if statement here
   end
 
   def destroy
@@ -25,6 +28,7 @@ class CartController < ApplicationController
     id = params[:id].to_i
     delete_id = session[:magazine_id].find { |num| num == id }
     session[:magazine_id].delete(delete_id)
+    #NOTE this is stil wrong
     # get the ID
     # delete from cart (take care of duplicates!)
     # render an OK status

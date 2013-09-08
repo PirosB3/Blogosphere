@@ -1,7 +1,7 @@
-$(document).ready(function(){
-	$('.fashion_image').on('click', function(){
-		console.log('hello');
-	})
-	$('.fashion_image').popover('toggle');
+// $(document).ready(function(){
+// 	$('.float_images').on('click', function(){
+// 		console.log('hello');
+// 	});
+// 	// $('.float_images').popover('toggle');
 
-});
+// });

@@ -1,7 +1,14 @@
 class DownloadController < ApplicationController
   def index
-  	@magazine = Magazine.all
     @purchase_type = params[:print_download]
+    if @purchase_type == 'download' 
+      @magazine = Magazine.where(:id => 6)
+      @type = 'E-VERSION'
+    else
+      @magazine = Magazine.where(:id => 5)
+      @type = 'PRINT-VERSION'
+    end
+    
   end
 
   def show
