@@ -1,5 +1,8 @@
 class DownloadController < ApplicationController
   def index
+
+    # There is an inconsistency with your template and your action here.
+    # looks like magazine is not being set, this renders an empty download/index page.
     @purchase_type = params[:print_download]
     if @purchase_type == 'download' 
       @magazine = Magazine.where(:id => 6)
