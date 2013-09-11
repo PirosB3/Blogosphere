@@ -1,6 +1,9 @@
 class CartController < ApplicationController
 
   def get_cart
+    # We should use this method in every CartController action 
+    # as a helper method. If the cart exists, it will fetch that
+    # if not it will create a new one
     unless session[:cart_items]
       session[:cart_items] = []
     end
@@ -8,12 +11,13 @@ class CartController < ApplicationController
   end
 
   def index
+    # using normal each loop
     #magazinecart = []
     #get_cart.each do |id|
       #magazinecart.push(Magazine.find(id))
     #end
 
-    # OR using MAP
+    # using MAP
     magazinecart = get_cart.map do |id|
       Magazine.find(id)
     end
@@ -22,9 +26,7 @@ class CartController < ApplicationController
   end
 
   def create
-    # get the ID
-    # add to the cart
-    # render a OK status
+    # get the ID, add to the cart, render a OK status
     get_cart.push(params[:id].to_i)
     render :json => { :status => 200 }, :status => 200
   end
@@ -40,6 +42,8 @@ class CartController < ApplicationController
         return render :json => { :status => 200 }, :status => 200
       end
     end
+    # If the action did not return earlier, this means that
+    # the item was not found. In this case we render a 500 error
     render :json => { :status => 500 }, :status => 500
   end
 
