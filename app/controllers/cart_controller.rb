@@ -1,38 +1,47 @@
 class CartController < ApplicationController
-  def index
-    # Get the cart
-    # MAP each cart ID to it's model in the database (using .find )
-    # return using JSON
-    magazinecart = []
-    session[:magazine_id].each do |x|
-      magazinecart.push(Magazine.where(:id => x))
+
+  def get_cart
+    unless session[:cart_items]
+      session[:cart_items] = []
     end
-    magazinedata = magazinecart.flatten
-    render :json => magazinedata
+    return session[:cart_items]
+  end
+
+  def index
+    #magazinecart = []
+    #get_cart.each do |id|
+      #magazinecart.push(Magazine.find(id))
+    #end
+
+    # OR using MAP
+    magazinecart = get_cart.map do |id|
+      Magazine.find(id)
+    end
+
+    render :json => magazinecart
   end
 
   def create
-    # binding.pry
-    sessionCart = session[:magazine_id] ||= []
-    sessionCart.push(params[:id].to_i)
     # get the ID
     # add to the cart
     # render a OK status
-    render :json => { :status => 200 }
-
-    #add an if statement here
+    get_cart.push(params[:id].to_i)
+    render :json => { :status => 200 }, :status => 200
   end
 
   def destroy
-    # binding.pry
-    id = params[:id].to_i
-    delete_id = session[:magazine_id].find { |num| num == id }
-    session[:magazine_id].delete(delete_id)
-    #NOTE this is stil wrong
-    # get the ID
-    # delete from cart (take care of duplicates!)
-    # render an OK status
-    render :json => { :status => 200 }
+    id_to_delete = params[:id].to_i
+
+    # Loop through cart and delete the FIRST id that matches id_to_delete
+    cart = get_cart
+    cart.each_with_index do |id, index|
+      if id == id_to_delete
+        cart.delete_at(index)
+        return render :json => { :status => 200 }, :status => 200
+      end
+    end
+    render :json => { :status => 500 }, :status => 500
   end
 
 end
+
