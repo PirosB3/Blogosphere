@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911093933) do
+ActiveRecord::Schema.define(:version => 20130911094634) do
+
+  create_table "checkout_magazines", :force => true do |t|
+    t.integer  "checkout_id"
+    t.integer  "magazine_id"
+    t.string   "purchase_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "checkout_magazines", ["checkout_id"], :name => "index_checkout_magazines_on_checkout_id"
+  add_index "checkout_magazines", ["magazine_id"], :name => "index_checkout_magazines_on_magazine_id"
 
   create_table "checkouts", :force => true do |t|
     t.integer  "user_id"
