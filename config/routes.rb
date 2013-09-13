@@ -1,78 +1,20 @@
 Blogosphere::Application.routes.draw do
+  devise_for :users
+
+  # Static pages
   get "editors/index"
-
-  post "download/index"
-  get "download/show"
-  post "download/create_checkout"
-  post "download/destroy_checkout"
-
   get "about/index"
 
-  devise_for :users
-  # devise_for :users, :controllers => { :sessions => "users/sessions" }
+  # Resources
 
-  get "charges/index"
-  post "charges/new"
-  post "charges/create"
-  get "charges/mandrill_mailer"
-  resources :cart, :only => [:index, :create, :destroy]
-  # resources :charges
-  # post "charges/subtotal"
+  # Cart is only used as a controller to add/delete/view to the cart
+  resources :cart, :only => [:index, :create, :destroy] 
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  # Magazines is the controller that shows all the magazines in a list.
+  resources :magazines, :only => [:index]
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  # Checkout is the controller that makes the payment and saves the payment information to the DB
+  resources :checkout, :only => [:new, :create]
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
   root :to => 'home#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end
