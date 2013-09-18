@@ -45,7 +45,6 @@
     </div>
   </div>
 
-  <%#   if user_signed_in? %>
   <div class="row-fluid">
     <div class="span1">
     </div>
@@ -54,25 +53,10 @@
         <li><a href="/">HOME</a></li>
         <li><a href="/about/index">ABOUT US</a></li>
         <li><a href="/editors/index">EDITORS</a></li>
-        <li class="dropdown">
-          <a id="buy" class="dropdown-toggle"
-           data-toggle="dropdown"
-           href="#">
-           BUY
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu" style='min-width: 30%;'>
-            <form class="download_print" name='input' action='/download/index' method='post'><input class="d_p"type='submit' value='PRINT' id='print_button'><input type="hidden" name="print_download" value="print"></form><br>
-
-            <form class="download_print" name='input' action='/download/index' method='post'><input class="d_p" type='submit' value='DOWNLOAD' id='download_button'>
-            <input type="hidden" name="print_download" value="download"></form>
-            <!-- <a class="brand print_download" href="/download/index" data-print="print">PRINT</a><br>
-            <a class="brand print_download" href="/download/index">DOWNLOAD</a> -->
-          </ul>
-        </li>
+        <li><a href="/magazines">BUY</a></li>
       </ul>
   </div>
-  <%# end %>
+
 </header>
 
 <div class="row-fluid" id="header-divider">
