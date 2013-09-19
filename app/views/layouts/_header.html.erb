@@ -62,12 +62,7 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu" style='min-width: 30%;'>
-            <form class="download_print" name='input' action='/download/index' method='post'><input class="d_p"type='submit' value='PRINT' id='print_button'><input type="hidden" name="print_download" value="print"></form><br>
-
-            <form class="download_print" name='input' action='/download/index' method='post'><input class="d_p" type='submit' value='DOWNLOAD' id='download_button'>
-            <input type="hidden" name="print_download" value="download"></form>
-            <!-- <a class="brand print_download" href="/download/index" data-print="print">PRINT</a><br>
-            <a class="brand print_download" href="/download/index">DOWNLOAD</a> -->
+            <li><%= link_to "Magazines", magazines_path %></li>
           </ul>
         </li>
       </ul>
