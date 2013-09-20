@@ -1,7 +1,7 @@
 class Checkout < ActiveRecord::Base
   before_create :set_sent_to_false
 
-  attr_accessible :total_price, :stripe_transaction_id
+  attr_accessible :total_price, :stripe_transaction_id, :user, :sent
   belongs_to :user
 
   has_many :checkout_magazines
