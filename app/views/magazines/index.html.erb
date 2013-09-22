@@ -13,14 +13,24 @@
 </div>
   
   <% @magazines.each do |x| %>
-        <div class="span6 magazine_data" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
-                <h3 style="margin-top:-10px"><%=@type%></h3>
+
+        <div class="span6 magazine_data" data-purchase-type="ebook" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
+            <h3 style="margin-top:-10px"><%=@type%></h3>
             <%=image_tag x.image_url, :width => 400 %><br>
             <div id="mag_name"><%=x.name%></div><br>
             <div id="mag_price">£<%= x.price %></div>
-            <button class="add_to_basket">ADD TO CART</button>
+            <button class="add_to_basket">ADD TO CART (ebook)</button>
         </div>
-        <%end%>
+
+        <div class="span6 magazine_data" data-purchase-type="web" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
+            <h3 style="margin-top:-10px"><%=@type%></h3>
+            <%=image_tag x.image_url, :width => 400 %><br>
+            <div id="mag_name"><%=x.name%></div><br>
+            <div id="mag_price">£<%= x.price %></div>
+            <button class="add_to_basket">ADD TO CART (web)</button>
+        </div>
+
+  <%end%>
 </div>
 
 <script type="text/template" id="cart-template">

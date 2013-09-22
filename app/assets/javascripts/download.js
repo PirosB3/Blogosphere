@@ -78,12 +78,12 @@ $(document).ready(function(){
       });
     }
     
-    var addCartItem = function(id) {
+    var addCartItem = function(id, purchase_type) {
       $.ajax({
         url: '/cart',
         type:'POST',
         dataType:'json', 
-        data: {id:id},
+        data: {id:id, purchase_type: purchase_type},
         success: getCartDataAndPopulatePage
       });
     }
@@ -92,7 +92,8 @@ $(document).ready(function(){
     $('.add_to_basket').on('click', function(){
       var magazine_data = $(this).closest('.magazine_data');
       var id = magazine_data.data('id');
-      addCartItem(id); 
+      var purchase_type = magazine_data.data('purchase-type');
+      addCartItem(id, purchase_type);
     });
 
     // Once the document is ready, fetch the cart data from the database

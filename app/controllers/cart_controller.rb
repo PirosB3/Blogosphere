@@ -18,8 +18,10 @@ class CartController < ApplicationController
     #end
 
     # using MAP
-    magazinecart = get_cart.map do |id|
-      Magazine.find(id)
+    magazinecart = get_cart.map do |cart_item|
+      magazine = Magazine.find(cart_item[:id]).attributes
+      magazine[:purchase_type] = cart_item[:purchase_type]
+      magazine
     end
 
     render :json => magazinecart
@@ -27,7 +29,7 @@ class CartController < ApplicationController
 
   def create
     # get the ID, add to the cart, render a OK status
-    get_cart.push(params[:id].to_i)
+    get_cart.push(params.slice(:id, :purchase_type))
     render :json => { :status => 200 }, :status => 200
   end
 
