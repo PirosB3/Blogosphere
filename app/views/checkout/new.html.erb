@@ -1,0 +1,21 @@
+<%=render 'layouts/header'%>
+
+<h3>Checkout</h3>
+
+<% @cart_items.each do |cart_item| %>
+  <p><b><%= cart_item['name'] %></b> as <%= cart_item['purchase_type'] %></p>
+<% end %>
+
+<%= link_to 'Go back to magazines', magazines_path %>
+
+<%= form_tag new_checkout_path, :method => :post do |form| %>
+  <script
+    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+    data-key="<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>
+    data-amount="<%= @cart_price %>"
+    data-name="Magazines"
+    data-description="<%= "#{@cart_count} Magazines" %>"
+    data-currency="gbp"
+    data-image="/128x128.png">
+  </script>
+<% end %>
