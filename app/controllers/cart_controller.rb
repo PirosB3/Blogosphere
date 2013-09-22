@@ -35,11 +35,13 @@ class CartController < ApplicationController
 
   def destroy
     id_to_delete = params[:id].to_i
+    purchase_type_to_delete = params[:purchase_type]
 
     # Loop through cart and delete the FIRST id that matches id_to_delete
     cart = get_cart
-    cart.each_with_index do |id, index|
-      if id == id_to_delete
+    cart.each_with_index do |cart_item, index|
+      is_item_to_remove = cart_item[:id].to_i == id_to_delete and cart_item[:purchase_type] == purchase_type_to_delete
+      if is_item_to_remove
         cart.delete_at(index)
         return render :json => { :status => 200 }, :status => 200
       end

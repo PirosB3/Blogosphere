@@ -35,7 +35,8 @@ $(document).ready(function(){
             var full_cart = CART_TEMPLATE({
               name: el.name,
               price: el.price,
-              id: el.id
+              id: el.id,
+              purchase_type: el.purchase_type
             });
 
             // Append them to the DOM
@@ -62,18 +63,20 @@ $(document).ready(function(){
           $('.trash_icon').on('click', function() {
             var wrapper = $(this).parent('.wrapper')
             var id = wrapper.data('magazine-id')
-            destroyCartItem(id);
+            var purchase_type = wrapper.data('purchase-type')
+            destroyCartItem(id, purchase_type);
           });
         }
       })
     };
 
-    var destroyCartItem = function(id) {
+    var destroyCartItem = function(id, purchase_type) {
       var url = '/cart/' + id;
       $.ajax({
         url: url,
         type:'DELETE',
-        dataType:'json', 
+        data: { purchase_type: purchase_type },
+        dataType:'json',
         success: getCartDataAndPopulatePage
       });
     }
