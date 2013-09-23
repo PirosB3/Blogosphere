@@ -1,22 +1,12 @@
 class CartController < ApplicationController
 
-  def get_cart
-    # We should use this method in every CartController action 
-    # as a helper method. If the cart exists, it will fetch that
-    # if not it will create a new one
-    unless session[:cart_items]
-      session[:cart_items] = []
-    end
-    return session[:cart_items]
-  end
-
   def index
     # using normal each loop
     #magazinecart = []
     #get_cart.each do |id|
       #magazinecart.push(Magazine.find(id))
     #end
-
+    # binding.pry
     # using MAP
     magazinecart = get_cart.map do |id|
       Magazine.find(id)

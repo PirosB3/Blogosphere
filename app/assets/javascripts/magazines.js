@@ -45,9 +45,8 @@ $(document).ready(function(){
 
           // Pull out the price key from each object (hash) in  our array
           // and sum them together
-          var type = _.pluck(data, 'type');
+         
           var prices = _.pluck(data, 'price');
-          var magazines = _.pluck(data, 'id');
           var result = _.reduce(prices, function(starting_value, number){
             return starting_value + number;
           }, 0);
@@ -55,7 +54,7 @@ $(document).ready(function(){
           // Append the result to the subtotal elememet
           SUBTOTAL.text('SUBTOTAL: £' + result);
           
-          var checkout_link = $("<form name='input' action='/checkout/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'><input type='hidden' name='subtotal' value='"+result+"'><input type='hidden' name='magazines' value='"+magazines+"'><input type='hidden' name='type' value='"+type+"'></form>"); 
+          var checkout_link = $("<form name='input' action='/checkout/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'></form>"); 
           // var checkout_link = $("<a class='checkout_link' href='/checkout/new'>PROCEED TO CHECKOUT</a>")
           $('.payment_checkout').html(checkout_link);
           // $('.checkout_link').on('click', function(){

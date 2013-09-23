@@ -1,18 +1,9 @@
 class CheckoutController < ApplicationController
 	def new
-	    type = params[:type].split('')
-	    type.each do |x|
-	    	if x == 'print'
-	            @products_total = params[:subtotal]
-			    @pandp = 1.50
-			    @subtotalwithpp = params[:subtotal].to_i + 1.5
-			else
-				@products_total = params[:subtotal]
-			    @pandp = 0.00
-				@subtotalwithpp = params[:subtotal]
-            end
-        @magazines = params[:magazines]
-    	end
+		@products_total = 8
+		@pandp = 1.50
+		@subtotalwithpp = 8+ 1.5
+		    #why is the session cart empty here??
     	#this is not working because if the if statement
     end
 
@@ -24,8 +15,8 @@ class CheckoutController < ApplicationController
 
 		# Get the credit card details submitted by the form
 		token = params[:stripeToken]
-		@subtotal_create = params[:subtotal]
-		@subtotal = params[:subtotal].to_i * 1000
+		@subtotal = 10000
+		# @subtotal = params[:subtotal].to_i * 1000
 		# binding.pry
 
 		# Create a Customer
@@ -40,6 +31,7 @@ class CheckoutController < ApplicationController
 		    :currency => "gbp",
 		    :customer => customer.id
 		)
+		binding.pry
 		
         
         redirect_to checkout_mandrill_mailer_path
