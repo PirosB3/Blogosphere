@@ -8,24 +8,35 @@
 		<li class="payment_cards"><%=image_tag('mastercard.jpg', :width => '200px', :class => "payment_images")%></li>
 		<li class="payment_cards"><%=image_tag('american-express.jpg', :width => '200px', :class => "payment_images")%></li>
 	</ul>
-	<form action="/checkout" method="POST">
+
+  <% @to_purchase_magazines.each do |magazine| %>
+    <p><b><%= magazine.name %></b>purchase as: <%= magazine.purchase_type %></p>
+  <% end %>
+
+  <%= form_tag checkout_index_path, :method => :post do |form| %>
+    <% if @has_at_least_a_post %>
+      <p><%= text_field_tag 'address', nil, placeholder: 'Enter your address here', :required => true %></p>
+      <p><%= text_field_tag 'post_code', nil, placeholder: 'Enter your post code here', :required => true %></p>
+      <p><%= text_field_tag 'city', nil, placeholder: 'Enter your city here', :required => true %></p>
+    <% end %>
 	  <script
 	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-	    data-key="pk_test_cjMKtqKqJv1rcWEzUinqNbiL"
-	    data-amount="2000"
+      data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+      data-amount="<%= @subtotal %>"
 	    data-name="Blogosphere"
-	    data-description="Amount Payable: £<%=@subtotalwithpp%>"
+	    data-description="Amount Payable: £<%= @subtotal%>"
 	    data-image="/128x128.png">
 	  </script>
-	</form>
+  <% end %>
+
 </div>
 <!-- I need to edit this form so that I can pass the magazine ids and subtotal to the create controller so that I can create a checkout -->
 
 <div class="span3">
 	<h3>CHECKOUT</h3>
-	<h6>PRODUCTS: £<%=@products_total%></h6>
-	<h6>POST AND PACKAGING: £<%=@pandp%></h6>
-	<h6>TOTAL: £<%=@subtotalwithpp%></h6>
-</div>   
+	<h6>PRODUCTS: £<%= @total_price_magazines %></h6>
+	<h6>POST AND PACKAGING: £<%= @packaging_price %></h6>
+	<h6>TOTAL: £<%= @subtotal %></h6>
 
-<!-- include the shipping address if @magazine_type == 'print' -->
+  <%= button_to 'Go back to Magazine list', magazines_path, :id => 'checkout_button', :method => :get  %>
+</div>

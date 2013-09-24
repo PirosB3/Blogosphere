@@ -11,9 +11,15 @@ class ApplicationController < ActionController::Base
     return session[:cart_items]
   end
 
+  def get_cart_magazines
+    get_cart.map do |id|
+      Magazine.find(id)
+    end
+  end
+
   def get_cart_price
-  	prices = get_cart.map do |cart_item|
-  		Magazine.find(cart_item[:id]).price
+  	prices = get_cart_magazines.map do |magazine|
+  		magazine.price
     end
     prices.sum
   end

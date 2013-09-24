@@ -1,11 +1,15 @@
 class CheckoutController < ApplicationController
 	def new
-		@products_total = 8
-		@pandp = 1.50
-		@subtotalwithpp = 8+ 1.5
-		    #why is the session cart empty here??
-    	#this is not working because if the if statement
+    @to_purchase_magazines = get_cart_magazines
+    @total_price_magazines = get_cart_price
+
+    @has_at_least_a_post = @to_purchase_magazines.any? do |magazine|
+      magazine.purchase_type == 'post'
     end
+    @packaging_price = @has_at_least_a_post ? 5000 : 0
+
+    @subtotal = @total_price_magazines + @packaging_price
+  end
 
 	def create
 		binding.pry

@@ -6,7 +6,7 @@ one:
   image_url: test_image.png
   price: 200
   month: SEPTEMBER
-  purchase_type: web
+  purchase_type: ebook
 
 two:
   name: Magazine 2
@@ -14,7 +14,7 @@ two:
   image_url: test_image.png
   price: 3400
   month: OCTOBER
-  purchase_type: ebook
+  purchase_type: post
 
 three:
   name: Magazine 2
@@ -22,4 +22,4 @@ three:
   image_url: test_image.png
   price: 300
   month: OCTOBER
-  purchase_type: web
+  purchase_type: ebook
