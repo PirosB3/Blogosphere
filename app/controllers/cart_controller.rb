@@ -1,17 +1,9 @@
 class CartController < ApplicationController
 
   def index
-    # using normal each loop
-    #magazinecart = []
-    #get_cart.each do |id|
-      #magazinecart.push(Magazine.find(id))
-    #end
-    # binding.pry
-    # using MAP
     magazinecart = get_cart.map do |id|
       Magazine.find(id)
     end
-
     render :json => magazinecart
   end
 

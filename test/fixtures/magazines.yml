@@ -1,15 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  name: Magazine 1
   issue_number: 1
-  image_url: MyString
-  price: 1
-  month: MyString
+  image_url: test_image.png
+  price: 200
+  month: SEPTEMBER
+  purchase_type: web
 
 two:
-  name: MyString
-  issue_number: 1
-  image_url: MyString
-  price: 1
-  month: MyString
+  name: Magazine 2
+  issue_number: 2
+  image_url: test_image.png
+  price: 3400
+  month: OCTOBER
+  purchase_type: ebook
+
+three:
+  name: Magazine 2
+  issue_number: 2
+  image_url: test_image.png
+  price: 300
+  month: OCTOBER
+  purchase_type: web
