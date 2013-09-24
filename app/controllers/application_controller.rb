@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
   		Magazine.find(cart_item[:id]).price
     end
     prices.sum
+  end
 end
