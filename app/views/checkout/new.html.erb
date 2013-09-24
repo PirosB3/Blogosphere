@@ -13,20 +13,34 @@
     <p><b><%= magazine.name %></b>purchase as: <%= magazine.purchase_type %></p>
   <% end %>
 
+   <% if @checkout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@checkout.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @checkout.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= form_for @checkout do |f| %>
     <% if @has_at_least_a_post %>
-      <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
+      <p><%= f.text_field :address, placeholder: 'Enter your address here'  %></p>
       <p><%= f.text_field 'post_code', placeholder: 'Enter your post code here', :required => true %></p>
       <p><%= f.text_field 'city', placeholder: 'Enter your city here', :required => true %></p>
     <% end %>
-	  <script
+	  <%# <script
 	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
       data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
       data-amount="<%= @subtotal %>"
 	    data-name="Blogosphere"
 	    data-description="Amount Payable: £<%= @subtotal%>"
 	    data-image="/128x128.png">
-	  </script>
+      </script> %>
+
+    <%= f.submit "Submit" %>
   <% end %>
 
 </div>

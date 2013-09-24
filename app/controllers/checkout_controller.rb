@@ -1,5 +1,5 @@
 class CheckoutController < ApplicationController
-	def new
+  def get_purchase_information
     @to_purchase_magazines = get_cart_magazines
     @total_price_magazines = get_cart_price
 
@@ -9,20 +9,19 @@ class CheckoutController < ApplicationController
     @packaging_price = @has_at_least_a_post ? 5000 : 0
 
     @subtotal = @total_price_magazines + @packaging_price
+  end
+
+	def new
+    get_purchase_information
     @checkout = Checkout.new
   end
 
 	def create
-		binding.pry
-		# Set your secret key: remember to change this to your live secret key in production
-		# See your keys here https://manage.stripe.com/account
-		Stripe.api_key = "sk_test_aP5rgF9InbdDGENtMnZevqT4"
-
-		# Get the credit card details submitted by the form
-		token = params[:stripeToken]
-		@subtotal = 10000
-		# @subtotal = params[:subtotal].to_i * 1000
-		# binding.pry
+    @checkout = Checkout.new(params[:checkout])
+    unless @checkout.valid?
+      get_purchase_information
+      return render 'new'
+    end
 
 		# Create a Customer
 		customer = Stripe::Customer.create(
