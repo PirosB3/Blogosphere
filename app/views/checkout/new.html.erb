@@ -31,16 +31,14 @@
       <p><%= f.text_field 'post_code', placeholder: 'Enter your post code here', :required => true %></p>
       <p><%= f.text_field 'city', placeholder: 'Enter your city here', :required => true %></p>
     <% end %>
-	  <%# <script
+	  <script
 	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
       data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
       data-amount="<%= @subtotal %>"
 	    data-name="Blogosphere"
 	    data-description="Amount Payable: £<%= @subtotal%>"
 	    data-image="/128x128.png">
-      </script> %>
-
-    <%= f.submit "Submit" %>
+    </script>
   <% end %>
 
 </div>
