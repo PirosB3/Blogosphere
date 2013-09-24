@@ -9,6 +9,7 @@ class CheckoutController < ApplicationController
     @packaging_price = @has_at_least_a_post ? 5000 : 0
 
     @subtotal = @total_price_magazines + @packaging_price
+    @checkout = Checkout.new
   end
 
 	def create

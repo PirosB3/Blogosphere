@@ -13,11 +13,11 @@
     <p><b><%= magazine.name %></b>purchase as: <%= magazine.purchase_type %></p>
   <% end %>
 
-  <%= form_tag checkout_index_path, :method => :post do |form| %>
+  <%= form_for @checkout do |f| %>
     <% if @has_at_least_a_post %>
-      <p><%= text_field_tag 'address', nil, placeholder: 'Enter your address here', :required => true %></p>
-      <p><%= text_field_tag 'post_code', nil, placeholder: 'Enter your post code here', :required => true %></p>
-      <p><%= text_field_tag 'city', nil, placeholder: 'Enter your city here', :required => true %></p>
+      <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
+      <p><%= f.text_field 'post_code', placeholder: 'Enter your post code here', :required => true %></p>
+      <p><%= f.text_field 'city', placeholder: 'Enter your city here', :required => true %></p>
     <% end %>
 	  <script
 	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
