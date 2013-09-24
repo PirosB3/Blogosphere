@@ -21,7 +21,6 @@ $(document).ready(function(){
         type:'GET', 
         dataType: "json", 
         success: function(data) {
-          console.log(data);
 
           // Unbind all click handlers, we will re-bind them later.
           // This avoids zombies
@@ -36,7 +35,8 @@ $(document).ready(function(){
             var full_cart = CART_TEMPLATE({
               name: el.name,
               price: el.price,
-              id: el.id
+              id: el.id,
+              purchase_type: el.purchase_type
             });
 
             // Append them to the DOM

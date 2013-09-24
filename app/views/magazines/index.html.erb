@@ -18,7 +18,7 @@
 	<div class="span6 magazine_data" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
 		<h3 style="margin-top:-10px"><%=@type%></h3>
 	    <%=image_tag x.image_url, :width => 200 %><br>
-	    <div id="mag_name"><%=x.name%></div><br>
+	    <div id="mag_name"><%= x.name %> (<%= x.purchase_type %>)</div><br>
 	    <div id="mag_price">£<%= x.price %></div>
 	    <button class="add_to_basket">ADD TO CART</button>
 	</div>
@@ -27,7 +27,7 @@
 
 <script type="text/template" id="cart-template">
   <div class="wrapper" data-cost="{{=price}}" data-magazine-id="{{=id}}">
-      <h6 class="magazine_checkout">{{=name}}</h6>
+      <h6 class="magazine_checkout">{{=name}} ({{=purchase_type}})</h6>
 			<img class="trash_icon" title="click here to remove from cart" src="http://b.dryicons.com/images/icon_sets/symbolize_icons_set/png/128x128/trash.png" />
   </div>
 </script>
