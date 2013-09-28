@@ -18,4 +18,8 @@ Blogosphere::Application.routes.draw do
   get "checkout/mandrill_mailer"
 
   root :to => 'home#index'
+
+  namespace :administration do
+    resources :checkouts, :only => [:index, :show, :update]
+  end
 end
