@@ -21,7 +21,6 @@ $(document).ready(function(){
         type:'GET', 
         dataType: "json", 
         success: function(data) {
-          console.log(data);
 
           // Unbind all click handlers, we will re-bind them later.
           // This avoids zombies
@@ -36,7 +35,8 @@ $(document).ready(function(){
             var full_cart = CART_TEMPLATE({
               name: el.name,
               price: el.price,
-              id: el.id
+              id: el.id,
+              purchase_type: el.purchase_type
             });
 
             // Append them to the DOM
@@ -53,19 +53,6 @@ $(document).ready(function(){
 
           // Append the result to the subtotal elememet
           SUBTOTAL.text('SUBTOTAL: £' + result);
-          
-          var checkout_link = $("<form name='input' action='/checkout/new' method='post'><input type='submit' value='proceed to checkout' id='checkout_button'></form>"); 
-          // var checkout_link = $("<a class='checkout_link' href='/checkout/new'>PROCEED TO CHECKOUT</a>")
-          $('.payment_checkout').html(checkout_link);
-          // $('.checkout_link').on('click', function(){
-          //   $.ajax({
-          //     url: '/checkout',
-          //     type:'POST', 
-          //     dataType: "json", 
-          //     data: {data:data},
-          //     success: console.log('datasent')
-          //   });
-          // })
           //Replace a link with a class
           //When you click on the button also sends the data in a XML request, think that is the only way to send the object
           //Checkout_link on click and send data to controller in an ajax request

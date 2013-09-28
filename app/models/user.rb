@@ -9,4 +9,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :stripe_customer_id
 
   has_many :checkouts
+
+  def magazines
+    magazines = self.checkouts.map do |checkout|
+      checkout.magazines.all
+    end
+    magazines.flatten
+  end
 end
