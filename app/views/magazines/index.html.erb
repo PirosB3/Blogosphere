@@ -16,7 +16,7 @@
 	</div>
   
   <% @magazine.each do |x| %>
-	<div class="span6 magazine_data" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
+	<div class="span3 magazine_data" data-id="<%=x.id%>"data-price="<%=x.price%>" data-name="<%=x.name%>">
 		<h3 style="margin-top:-10px"><%=@type%></h3>
 	    <%=image_tag x.image_url, :width => 200 %><br>
 	    <div id="mag_name"><%= x.name %> (<%= x.purchase_type %>)</div><br>

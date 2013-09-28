@@ -1,5 +1,10 @@
 <%=render 'layouts/header'%>
 <div class="span1 sign_in_column_one">
 </div>
+<%binding.pry%>
+<h2>Thanks, your payment was successful, your confirmation code is</h2> 
 
-<h2>Thanks, your payment was successful. You will be sent an email with a link to the magazine shortly</h2>
+<% if @has_at_least_a_post != nil %>
+
+	<h3>Follow this link www.google.com to access the e_magazine</h3>
+<%end%>

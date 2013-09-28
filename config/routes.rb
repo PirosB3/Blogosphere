@@ -15,6 +15,7 @@ Blogosphere::Application.routes.draw do
 
   # Checkout is the controller that makes the payment and saves the payment information to the DB
   resources :checkout, :as => :checkouts, :only => [:new, :create]
+  get "checkout/mandrill_mailer"
 
   root :to => 'home#index'
 end
