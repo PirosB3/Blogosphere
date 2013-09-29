@@ -1,8 +1,9 @@
 <%=render 'layouts/header'%>
 <div class="span1 sign_in_column_one">
 </div>
-<div class="span10">
-	<% @unsent_checkouts.each do |checkout| %>
+
+<% @unsent_checkouts.each do |checkout| %>
+	<div class="span10">
 		<div class="span2">
 			<h3>Checkout_id: </h3>
 		</div>
@@ -16,10 +17,10 @@
 			<% user = User.where(:id => checkout.user_id) %>
 			<%= user[0].email %>
 		</div>
-	<%end%>
 	<!-- #for each checkout create a link to the checkout and show as well as user email and no.of magazines to ship -->
 
 	<!--  # create a link to the checkout as well as     (MAKE SURE YOU LOOK AT RAKE ROUTES) -->
-</div>
+	</div>
+<%end%>
 
 

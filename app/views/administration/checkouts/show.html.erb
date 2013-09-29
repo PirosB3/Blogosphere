@@ -1,1 +1,28 @@
-Hello World
+<%=render 'layouts/header'%>
+<div class="span12">
+	<div class="span4">
+		<h5>Checkout_id: <%=@checkout[0].stripe_transaction_id%></h5>
+	</div>
+	<div class="span3">
+		<h5>User Email: <%=@user[0].email%></h5>
+	</div>
+	<div class="span3">
+		<h5>Address: <%=@checkout[0].address%></h5>
+		<h5>City: <%=@checkout[0].city%></h5>
+		<h5>Postcode: <%=@checkout[0].post_code%></h5>
+	</div>
+	<div class="span1 btn">
+		<h5>Posted?: <%=@checkout[0].sent%></h5>
+	</div>
+</div>
+
+<%@checkout_print_magazines.each do |magazine| %>
+<div class="span12">
+	<div class="span4">
+		<h5><%=magazine.issue_number%></h5>
+	</div>
+	<div class="span4">
+		<h5><%=magazine.name%></h5>
+	</div>
+</div>
+<%end%>
