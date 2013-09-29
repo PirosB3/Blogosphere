@@ -11,6 +11,7 @@ class Administration::CheckoutsController < ApplicationController
 
     def show 
         @checkout = Checkout.where(:id => params[:id])
+        binding.pry
         @user = User.where(:id => @checkout[0].user_id)
         #select all the print magazines in the purchase
         @checkout_print_magazines = @checkout[0].magazines.select do |magazine|
@@ -24,9 +25,15 @@ class Administration::CheckoutsController < ApplicationController
     end
 
     def update
+        checkout = Checkout.where(:id => 90)
+        @checkout[0].update(@checkout[0].id, :sent => 'true')
+        @checkout.save
+        redirect_to administation_checkout_path 
         #this is going to be update, when the link is clicked then I can have a Javascript popup saying are you sure all the items in this checkout have been posted
     #Then is can update the checkouts status to sent: true and redirect_back to the checkout that it was on
     end
 
     
 end
+
+

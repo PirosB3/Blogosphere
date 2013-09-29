@@ -12,7 +12,7 @@
 		<h5>Postcode: <%=@checkout[0].post_code%></h5>
 	</div>
 	<div class="span1 btn">
-		<h5>Posted?: <%=@checkout[0].sent%></h5>
+		<h5><%= link_to "Posted: #{@checkout[0].sent} (click to edit)", controller: 'administration/checkouts', action: "update"%></h5>
 	</div>
 </div>
 
