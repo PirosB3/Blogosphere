@@ -27,7 +27,7 @@
 
   <%= form_for @checkout do |f| %>
     <% if @has_at_least_a_post %>
-      <p><%= f.text_field :address, placeholder: 'Enter your address here'  %></p>
+      <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
       <p><%= f.text_field 'post_code', placeholder: 'Enter your post code here', :required => true %></p>
       <p><%= f.text_field 'city', placeholder: 'Enter your city here', :required => true %></p>
     <% end %>
