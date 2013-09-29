@@ -44,6 +44,7 @@ module Blogosphere
     
     #forcing your application to not access the DB or load models when precompiling your assets.
     config.assets.initialize_on_precompile = false
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
