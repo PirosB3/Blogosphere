@@ -49,25 +49,23 @@ class CheckoutController < ApplicationController
 		@checkout.sent = false
 		@checkout.save
 
-		get_cart_magazines.each do |magazine|
+		@to_purchase_magazines.each do |magazine|
 			@checkout.magazines.push(magazine)
-			#do we not have to save here??
-			
-			#This then has to go to the mandrill rails controller 
-			#@has_at_least_a_e_magazine = @to_purchase_magazines.any? do |magazine|
-										# magazine.purchase_type == 'e-magazine'
-										# end
-			#if @has_at_least_a_e_magazine.full? go to mandrill mail controller
-			#and send a confirmation email with a link to the magazine
-			#else send a confirmation email without a link to the magazine						
-			#end
+			@checkout.save
 		end
 
-		redirect_to checkout_mandrill_mailer_path(:purchase_type => @has_at_least_a_post)
+			
+		has_at_least_a_e_magazine = @to_purchase_magazines.any? do |magazine|
+										 	magazine.purchase_type == 'e-book'
+										end
+		mandrill_mailer(has_at_least_a_e_magazine)
+		
 	end
 
-	def mandrill_mailer
-		UserMailer.welcome_email.deliver
+	def mandrill_mailer(checkout_type)
+		@checkout_type = checkout_type
+		user_email = current_user.email
+		UserMailer.welcome_email(user_email).deliver
 		render :template => 'checkout/create'
 	end
 end
