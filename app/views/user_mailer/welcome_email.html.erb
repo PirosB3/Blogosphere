@@ -4,15 +4,17 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com</h1>
     <p>
-      You have successfully signed up to example.com
-      your username is: <br/>
+      You have successfully purchased Blogosphere Magazine, your confirmation number is <%=@checkout_transaction_id%> <br/>
     </p>
+
     <p>
-      To login to the site, just follow this link:
+      <% if @checkout_type == true %>
+        <h3> Follow this link to access magazine www.google.com</h3>
+      <%end%>
     </p>
+
     <%#= link_to 'View Magazine', home_show_url %>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Thanks for your purchase and we hope to see you again soon!</p>
   </body>
 </html>

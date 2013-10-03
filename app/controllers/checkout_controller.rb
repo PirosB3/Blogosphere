@@ -58,14 +58,15 @@ class CheckoutController < ApplicationController
 		has_at_least_a_e_magazine = @to_purchase_magazines.any? do |magazine|
 										 	magazine.purchase_type == 'e-book'
 										end
-		mandrill_mailer(has_at_least_a_e_magazine)
+		mandrill_mailer(has_at_least_a_e_magazine, @checkout.stripe_transaction_id)
 		
 	end
 
-	def mandrill_mailer(checkout_type)
+	def mandrill_mailer(checkout_type, transaction_id)
+		@checkout_transaction_id = transaction_id
 		@checkout_type = checkout_type
 		user_email = current_user.email
-		UserMailer.welcome_email(user_email).deliver
+		UserMailer.welcome_email(user_email, @checkout_type, @checkout_transaction_id).deliver
 		render :template => 'checkout/create'
 	end
 end
