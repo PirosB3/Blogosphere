@@ -6,81 +6,22 @@
 // 	border-top:34px solid lightgrey;
 // }
 
-.navbar .brand {
-    // color:black!important;
-    font-size:85%;
-    // float:right!important;
+#magazine-section{
+	background:#eeeeec
 }
 
-#logo h1{
-	font-size:45px;
-	font-family:infinity-regular;
-}
-
-#strapline h3{
-	padding-top:18px;
-}
-
-#middlenav li, .footer li{
-	padding-right:15px;
-	padding-left:15px;
-	border-right: 1px solid grey;
-	display:inline;
-}
-
-#middlenav li a, .footer li a, #footerwrapper ul li {
-	border-bottom:none;
-	opacity:.5;
-}
-
-#middlenav li a:hover, .footer li a:hover, #footerwrapper ul li:hover{
-	border-bottom:none;
-	opacity:1;
-}
-
-#middlenav li:first-child, .footer li:first-child{
-	border-left: 1px solid grey;
-}
-
-.dropdown-menu a{
-	margin-left:10px;
-}
-
-#header-divider{
-	border-top:2px solid lightgrey;
-	margin-bottom:15px;
-}
-
-.float_images{
+.float_images img{
+	width:46%;
 	float:left;
-	padding:15px 5px;
 }
 
-#footer-divider{
-	margin-top:15px;
-	border-top:2px solid lightgrey;
+.homepage_images img{
+	width: 45%;
+	float: left;
+	height:322px;
+	margin:2%;
 }
 
-.footer ul{
-	text-align:center;
-}
-
-.top_nav{
-	float:right;
-	margin-right:6%;
-}
-
-.recipe_image{
-	height:189px;
-}
-
-.make_up_image{
-	height:189px;
-}
-
-.travel_image{
-	height:189px;
-}
 
 .d_p{
 	font-size:10px;

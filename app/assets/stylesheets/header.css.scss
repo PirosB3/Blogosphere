@@ -1,3 +1,86 @@
-.navbar{
-	margin-bottom:0;
+#mainheader{
+	background:#EFEBD6;
 }
+
+.top_nav{
+	float:right;
+	margin-right:7%;
+}
+
+.navbar .brand {
+    // color:black!important;
+    font-size:85%;
+    // float:right!important;
+}
+
+#logo h1{
+	font-size:45px;
+	font-family: 'infinityregular';
+	font-size:7em;
+	text-align:center;
+	margin:0;
+}
+
+#logo h6{
+	font-size:2em;
+	font-color:rgb 169 162 96;
+	width: 39%;
+	float: right;
+	margin: 3% 0;
+}
+
+#middlenav ul {
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	margin-left:6%;
+}
+
+#middlenav li{
+	width:18%;
+	display:inline-block;
+}
+
+#middlenav li:last-child, #middlenav li:first-child{
+	width:12%;
+}
+
+#middlenav a{
+	display: block;
+	max-width: 100%;
+	font-size: 2em;
+	text-align: center;
+	border-right: 1px solid black;
+}
+
+#middlenav li, .footer li{
+
+}
+
+#middlenav li a, .footer li a, #footerwrapper ul li {
+	border-bottom:none;
+	opacity:.5;
+}
+
+#middlenav li a:hover, .footer li a:hover, #footerwrapper ul li:hover{
+	border-bottom:none;
+	opacity:1;
+}
+
+#middlenav li:first-child, .footer li:first-child{
+	border-left: 1px solid grey;
+}
+
+.dropdown-menu a{
+	margin-left:10px;
+}
+
+#footer-divider{
+	margin-top:15px;
+	border-top:2px solid lightgrey;
+}
+
+.footer ul{
+	text-align:center;
+}
+
