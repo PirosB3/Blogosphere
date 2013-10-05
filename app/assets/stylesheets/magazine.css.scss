@@ -16,6 +16,12 @@
 }
 #mag_name, #mag_width{
 	float:left;
+	font-size:1.5em;
+}
+
+#mag_price{
+	font-size: 1.5em;
+	width: 10%;
 }
 
 
@@ -29,6 +35,9 @@
 
 .add_to_basket{
 	margin-top:10px;
+	font-family: 'infinityregular';
+	background: white;
+	width: 40%;
 }
 
 .magazine_checkout{

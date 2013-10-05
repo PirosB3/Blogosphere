@@ -20,7 +20,7 @@
   <div class="span4 offset1 shipping_address"
     <%= form_for @checkout do |f| %>
       <% if @has_at_least_a_post %>
-        <h3>1. ENTER SHIPPING ADDRESS HERE</h3>
+        <h3>ENTER SHIPPING ADDRESS HERE</h3>
         <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
         <p><%= f.text_field 'post_code', placeholder: 'Enter your city here', :required => true %></p>
         <p><%= f.text_field 'city', placeholder: 'Enter your postcode here', :required => true %></p>
@@ -37,7 +37,7 @@
   </div>
 
   <div class="span3 cards_accepted">
-    <h3>2. CARDS ACCEPTED</h3>
+    <h3>CARDS ACCEPTED</h3>
     <ul>
       <li class="payment_cards"><%=image_tag('visa.jpg', :width => '20px', :class => "payment_images")%></li>
       <li class="payment_cards"><%=image_tag('mastercard.jpg', :width => '20px', :class => "payment_images")%></li>
