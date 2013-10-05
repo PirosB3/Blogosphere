@@ -1,26 +1,27 @@
 <%=render 'layouts/header'%>
-<div class="span1 sign_in_column_one">
+
+<div class="fluid-row sign_in_form clearfix">
+	<div class="span2 offset5">
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		  <div><%= f.label :email %><br />
+		  <%= f.email_field :email, :autofocus => true %></div>
+
+		  <div><%= f.label :password %><br />
+		  <%= f.password_field :password %></div>
+
+		  <% if devise_mapping.rememberable? -%>
+		    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div><br>
+		  <% end -%>
+
+		  <div class="devise_submit clear clearfix"><%= f.submit "Sign In" %></div><br>
+		<% end %>
+
+		<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+	      <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "forgot_password" %><br /><br/>
+	    <% end -%>
+	    <a class="notice brand"><%= notice %></a>
+	    <a class="alert brand"><%= alert %></a> 
+	</div>
 </div>
-<div id="sign_in" class="span6">
-	<!-- <h2>Sign in</h2> -->
 
-	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-	  <div><%= f.label :email %><br />
-	  <%= f.email_field :email, :autofocus => true %></div>
-
-	  <div><%= f.label :password %><br />
-	  <%= f.password_field :password %></div>
-
-	  <% if devise_mapping.rememberable? -%>
-	    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div><br>
-	  <% end -%>
-
-	  <div class="devise_submit"><%= f.submit "Sign In" %></div><br>
-	<% end %>
-
-	<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-      <%= link_to "Forgot your password?", new_password_path(resource_name) %><br /><br/>
-    <% end -%>
-    <a class="notice brand"><%= notice %></a>
-    <a class="alert brand"><%= alert %></a> 
-</div>
+<%=render 'layouts/footer'%>

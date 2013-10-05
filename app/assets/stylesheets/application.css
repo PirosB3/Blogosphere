@@ -25,6 +25,10 @@
 	height: 0;
 }
 
+.clear{
+	clear:both;
+}
+
 @font-face {
     font-family: 'infinityregular';
     src: url('infinity-webfont.eot');

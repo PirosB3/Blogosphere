@@ -1,0 +1,47 @@
+// Place all the styles related to the charges controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.checkout_view{
+	min-height:352px;
+}
+.shipping_address{
+	margin-left:12%;
+	margin-top:4%;
+}
+
+.shipping_address input{
+	width:73%;
+}
+
+.shipping_address h3, .shipping_address p input, .cards_accepted h3{
+	font-family:'infinityregular'
+}
+
+.stripe-button-el{
+	position: absolute;
+	left: 44%;
+	top: 74%;
+}
+
+.cards_accepted{
+	margin-top:4%;
+}
+
+.cards_accepted ul{
+	padding:0;
+}
+
+.payment_images{
+	width: 71px;
+	height: 56px;
+}
+
+.payment_cards{
+	width:150px;
+	display:inline;
+}
+
+.checkout_basket_items{
+	margin-top: 2%;
+	margin-left: 7%;
+}

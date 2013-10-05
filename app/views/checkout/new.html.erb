@@ -1,55 +1,61 @@
 <%=render 'layouts/header'%>
-<%binding.pry%>
-<div class="span1 sign_in_column_one">
-</div>
-<div class="span8">
-	<h3>CARDS ACCEPTED</h3>
-	<ul>
-		<li class="payment_cards"><%=image_tag('visa.jpg', :width => '200px', :class => "payment_images")%></li>
-		<li class="payment_cards"><%=image_tag('mastercard.jpg', :width => '200px', :class => "payment_images")%></li>
-		<li class="payment_cards"><%=image_tag('american-express.jpg', :width => '200px', :class => "payment_images")%></li>
-	</ul>
+<div class="checkout_view clearfix fluid-row">
 
-  <% @to_purchase_magazines.each do |magazine| %>
-    <p><b><%= magazine.name %></b>purchase as: <%= magazine.purchase_type %></p>
-  <% end %>
+<!-- <div class="span8 offset1">
+	<%# @to_purchase_magazines.each do |magazine| %>
+    <p><b><%#= magazine.name %></b>purchase as: <%#= magazine.purchase_type %></p>
+  <%# end %>
 
-   <% if @checkout.errors.any? %>
+   <%# if @checkout.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@checkout.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%#= pluralize(@checkout.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% @checkout.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+      <%# @checkout.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
       </ul>
     </div>
-  <% end %>
-
-  <%= form_for @checkout do |f| %>
-    <% if @has_at_least_a_post %>
-      <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
-      <p><%= f.text_field 'post_code', placeholder: 'Enter your post code here', :required => true %></p>
-      <p><%= f.text_field 'city', placeholder: 'Enter your city here', :required => true %></p>
+  <%# end %> -->
+  <div class="span4 offset1 shipping_address"
+    <%= form_for @checkout do |f| %>
+      <% if @has_at_least_a_post %>
+        <h3>1. ENTER SHIPPING ADDRESS HERE</h3>
+        <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
+        <p><%= f.text_field 'post_code', placeholder: 'Enter your city here', :required => true %></p>
+        <p><%= f.text_field 'city', placeholder: 'Enter your postcode here', :required => true %></p>
+      <% end %>
+  	  <script
+  	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+        data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+        data-amount="<%= @subtotal%>"
+  	    data-name="Blogosphere"
+  	    data-description="Amount Payable: £<%= @subtotal%>"
+  	    data-image="/128x128.png">
+      </script>
     <% end %>
-	  <script
-	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-      data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
-      data-amount="<%= @subtotal%>"
-	    data-name="Blogosphere"
-	    data-description="Amount Payable: £<%= @subtotal%>"
-	    data-image="/128x128.png">
-    </script>
-  <% end %>
+  </div>
+
+  <div class="span3 cards_accepted">
+    <h3>2. CARDS ACCEPTED</h3>
+    <ul>
+      <li class="payment_cards"><%=image_tag('visa.jpg', :width => '20px', :class => "payment_images")%></li>
+      <li class="payment_cards"><%=image_tag('mastercard.jpg', :width => '20px', :class => "payment_images")%></li>
+      <li class="payment_cards"><%=image_tag('american-express.jpg', :width => '20px', :class => "payment_images")%></li>
+    </ul>
+  </div>
+
+  <div class="span3 checkout_basket_items">
+    <h3>CHECKOUT BASKET</h3>
+    <h6>PRODUCTS: £<%= @total_price_magazines %></h6>
+    <h6>POST AND PACKAGING: £<%= @packaging_price %></h6>
+    <h6>TOTAL: £<%= @subtotal %></h6>
+
+    <%= button_to 'Go back to Magazine list', magazines_path, :id => 'checkout_button', :method => :get  %>
+  </div>
 
 </div>
 <!-- I need to edit this form so that I can pass the magazine ids and subtotal to the create controller so that I can create a checkout -->
 
-<div class="span3">
-	<h3>CHECKOUT</h3>
-	<h6>PRODUCTS: £<%= @total_price_magazines %></h6>
-	<h6>POST AND PACKAGING: £<%= @packaging_price %></h6>
-	<h6>TOTAL: £<%= @subtotal %></h6>
 
-  <%= button_to 'Go back to Magazine list', magazines_path, :id => 'checkout_button', :method => :get  %>
-</div>
+<%=render 'layouts/footer'%>

@@ -1,19 +1,30 @@
-.sign_in_column_one{
-	height:500px;
+.sign_in_form form{
+	padding-top:20%;
+	background-color:white;
+	width: 60%;
+	margin: 0 auto;
 }
 
-input{
-	background-color:lightgrey!important;
+
+.sign_in_form form label{
+	font-size:20px;
 }
 
-.devise_submit{
-	width:300px;
-	float:left!important;
-	margin-left: -205px;
+.devise_submit input{
+	font-family:'infinityregular';
+	width: 85%!important;
+	float: left!important;
+	background-color: white!important;
 }
 
 .alert{
 	background-color:white;
 	border:1px solid white;
 	padding-left:0px;
+}
+
+.forgot_password{
+	margin-left: 20%;
+	width: 164px;
+	display: block;
 }

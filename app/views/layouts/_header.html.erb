@@ -11,17 +11,28 @@
    
         <!-- Everything you want hidden at 940px or less, place within here -->
         <div class="nav-collapse collapse top_nav clearfix">
-            <% if user_signed_in? %>
-              <a class="brand" href="">welcome <%=current_user.email%></a>
-              <%=link_to 'SIGN OUT', destroy_user_session_path, :method => :delete, :class => 'brand' %>
-              <!-- <a class="brand" href="/users/sign_out">SIGN OUT</a> -->
-            <% else %>
-            <%# if user_signed_in !== true %>
-               <a class="notice brand"><%= notice %></a>
-              <!--  <a class="alert brand"><%#= alert %></a> --> 
-              <a class="brand" href="/users/sign_up">SIGN UP</a>
-              <a class="brand" href="/users/sign_in">SIGN IN</a>
-            <% end %>
+          <ul class="clearfix top_header">
+                <% if user_signed_in? %>
+                  <a class="brand" href="">welcome <%=current_user.email%></a>
+                  <%=link_to 'SIGN OUT', destroy_user_session_path, :method => :delete, :class => 'brand' %>
+                  <!-- <a class="brand" href="/users/sign_out">SIGN OUT</a> -->
+                <% else %>
+                <%# if user_signed_in !== true %>
+                   <a class="notice brand"><%= notice %></a>
+                  <!--  <a class="alert brand"><%#= alert %></a> --> 
+                  <a class="brand login first" href="/users/sign_up">SIGN UP</a>
+                  <a class="brand login" href="/users/sign_in">SIGN IN</a>
+                <% end %>
+
+                <a class="facebook" href="https://www.facebook.com/pages/Blogosphere-Magazine/345634805572414?ref=ts&fref=ts">
+                  Facebook
+                </a>
+
+                <a class="twitter" href="https://twitter.com/BlogosphereM">
+                  Twitter
+                </a>
+
+            </ul>
           <!-- .nav, .navbar-search, .navbar-form, etc -->
         </div>
    <!--  </div> -->

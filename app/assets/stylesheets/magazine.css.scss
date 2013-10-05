@@ -1,0 +1,86 @@
+// Place all the styles related to the download controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.magazine_index_conatiner{
+	background-color:white;
+}
+
+
+#checkout{
+	height:700px;
+	padding:3%;
+}
+
+#checkout h3{
+	font-family:'infinityregular';
+}
+#mag_name, #mag_width{
+	float:left;
+}
+
+
+.magazine_data{
+	margin: 15px 10px;
+}
+
+.magazine_data img{
+	margin-bottom:10px;
+}
+
+.add_to_basket{
+	margin-top:10px;
+}
+
+.magazine_checkout{
+  display: inline-block;
+  width:78%;
+  margin:5% 0;
+
+}
+
+.trash_icon{
+	width:20px;
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  right: -10px;
+}
+
+.basket{
+	width:100px;
+	float:left;
+}
+
+ul .dropdown-menu{
+	width:100px!important;
+}
+
+#checkout_button{
+	width: 90%;
+	float: left;
+	background-color: #EFEBD6;
+	font-family: 'infinityregular';
+}
+
+.subtotal{
+    width: 150px;
+    border-top: 1px solid lightgrey;
+    padding: 6% 0;
+    font-size:1.3em;
+}
+
+.magazine_data img{
+	width:80%;
+	padding-top:5%;
+}
+
+// MAGAZINE NEW
+
+.checkout_basket_items h3{
+	font-family: infinity;
+	margin: 11% 0 0 0;
+}
+
+.checkout_basket_items h6{
+	margin: 5% 0;
+}

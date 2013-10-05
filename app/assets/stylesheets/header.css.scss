@@ -2,23 +2,47 @@
 	background:#EFEBD6;
 }
 
-.top_nav{
-	float:right;
-	margin-right:7%;
+.top_header{
+	margin:0;
 }
 
-.navbar .brand {
-    // color:black!important;
-    font-size:85%;
-    // float:right!important;
+.facebook, .twitter{
+	text-indent:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    height:34px;
+    width:34px;
+    background-image: url('nav_social_sprite.png');
+    display:block;
+    margin:1%;
+}
+
+#top-nav ul{
+	width:89%;
+}
+
+#top-nav ul a {
+	float:right;
+	margin:0;
+	padding:5px 10px;
+}
+
+.facebook{
+	background-position:456px -1px;
+	padding:2px 4px!important;
+}
+
+.twitter{
+	background-position:245px -1px;
+	padding:2px 4px!important;
 }
 
 #logo h1{
-	font-size:45px;
 	font-family: 'infinityregular';
 	font-size:7em;
 	text-align:center;
 	margin:0;
+	margin-top:-1%;
 }
 
 #logo h6{
@@ -26,17 +50,17 @@
 	font-color:rgb 169 162 96;
 	width: 39%;
 	float: right;
-	margin: 3% 0;
+	margin: 2% 0;
 }
 
-#middlenav ul {
+#middlenav ul, .footer ul{
 	padding: 0;
 	text-decoration: none;
 	list-style: none;
 	margin-left:6%;
 }
 
-#middlenav li{
+#middlenav li, .footer li {
 	width:18%;
 	display:inline-block;
 }
@@ -45,7 +69,7 @@
 	width:12%;
 }
 
-#middlenav a{
+#middlenav a, .footer  li a{
 	display: block;
 	max-width: 100%;
 	font-size: 2em;
@@ -53,9 +77,6 @@
 	border-right: 1px solid black;
 }
 
-#middlenav li, .footer li{
-
-}
 
 #middlenav li a, .footer li a, #footerwrapper ul li {
 	border-bottom:none;
@@ -75,12 +96,30 @@
 	margin-left:10px;
 }
 
-#footer-divider{
-	margin-top:15px;
-	border-top:2px solid lightgrey;
+#footerwrapper{
+	margin-left:10%;
+	height:100px;
+}
+
+.footer{
+	background:#EFEBD6;
 }
 
 .footer ul{
-	text-align:center;
+	margin-top:3%;
 }
+
+.footer ul li{
+	list-style:none;
+	font-family:'infinityregular';
+}
+
+.footer ul li:first-child, .footer ul li:nth-child(2){
+	width:27%;
+}
+
+.footer ul li:last-child{
+	width:18%;
+}
+
 

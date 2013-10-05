@@ -1,22 +1,23 @@
 <%=render 'layouts/header'%>
-<div class="span1 sign_in_column_one">
+
+<div class="fluid-row sign_in_form clearfix">
+	<div class="span2 offset5">
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div><%= f.label :email %><br />
+		  <%= f.email_field :email, :autofocus => true %></div>
+
+		  <div><%= f.label :password %><br />
+		  <%= f.password_field :password %></div>
+
+		  <div><%= f.label :password_confirmation %><br />
+		  <%= f.password_field :password_confirmation %></div><br>
+
+		  <div class="devise_submit"><%= f.submit "Sign up" %></div><br><br>
+		<% end %>
+
+	</div>
 </div>
-<!-- <h2>Sign up</h2> -->
-<div class="span6">
-	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-	  <%= devise_error_messages! %>
 
-	  <div><%= f.label :email %><br />
-	  <%= f.email_field :email, :autofocus => true %></div>
-
-	  <div><%= f.label :password %><br />
-	  <%= f.password_field :password %></div>
-
-	  <div><%= f.label :password_confirmation %><br />
-	  <%= f.password_field :password_confirmation %></div><br>
-
-	  <div class="devise_submit"><%= f.submit "Sign up" %></div><br>
-	<% end %>
-
-	
-</div>
+<%=render 'layouts/footer'%>
