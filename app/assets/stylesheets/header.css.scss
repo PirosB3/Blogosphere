@@ -47,27 +47,29 @@
 
 #logo h6{
 	font-size:2em;
-	font-color:rgb 169 162 96;
-	width: 39%;
-	float: right;
-	margin: 2% 0;
+	width: 100%;
+	display:block;
+	margin: 3% auto;
+	text-align:center;
 }
 
-#middlenav ul, .footer ul{
+#middlenav ul{
 	padding: 0;
 	text-decoration: none;
 	list-style: none;
-	margin-left:6%;
+	width: 40%;
+	margin: 1% auto 2% auto;
 }
 
 #middlenav li, .footer li {
-	width:18%;
+	width:23%;
 	display:inline-block;
+
 }
 
-#middlenav li:last-child, #middlenav li:first-child{
-	width:12%;
-}
+// #middlenav li:last-child, #middlenav li:first-child{
+// 	width:12%;
+// }
 
 #middlenav a, .footer  li a{
 	display: block;
@@ -106,7 +108,11 @@
 }
 
 .footer ul{
-	margin-top:3%;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	width: 85%;
+	margin: 3% auto 2% auto;
 }
 
 .footer ul li{

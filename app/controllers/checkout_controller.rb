@@ -19,6 +19,7 @@ class CheckoutController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		get_purchase_information
 		@checkout = Checkout.new(params[:checkout])
 		@checkout.is_by_post = @has_at_least_a_post
