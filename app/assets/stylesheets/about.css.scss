@@ -4,12 +4,17 @@
 
 .about_us{
 	background-color:white;
+	background:url('about_background.jpg');
+	background-image:cover;
+	// opacity:.2;
 }
 
 .about_us p {
 	font-family: infinity;
-	font-size: 2em;
+	font-size: 1.5em;
 	margin-top:5%!important;
 	margin-bottom:5%!important;
 	margin-left:4%!important;
+	opacity:1!important;
+	font-weight:bold!important;
 }
