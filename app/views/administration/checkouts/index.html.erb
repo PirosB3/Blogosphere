@@ -1,19 +1,17 @@
 <%=render 'layouts/header'%>
 
-
-<% @unsent_checkouts.each do |checkout| %>
-	<div class="span12 clearfix">
-		<div class="span4 offset3">
-			<h5>Checkout_id: <%= link_to "#{checkout.stripe_transaction_id}", controller: 'administration/checkouts', action: "show", id: checkout %> </h5>
+<div class="fluid-row checkout_index_container">
+	<% @unsent_checkouts.each do |checkout| %>
+		<div class="span12 clearfix">
+			<div class="span4 offset3">
+				<h5><%= link_to "Checkout_id: #{checkout.id}", controller: 'administration/checkouts', action: "show", id: checkout %> </h5>
+			</div>
+			<div class="span2 btn">
+				<h3>Posted: <%=checkout.sent %></h3>
+			</div>
 		</div>
-		<div class="span2 btn">
-			<h3>Posted: <%=checkout.sent %></h3>
-		</div>
-<!-- #for each checkout create a link to the checkout and show as well as user email and no.of magazines to ship -->
-
-<!--  # create a link to the checkout as well as     (MAKE SURE YOU LOOK AT RAKE ROUTES) -->
-	</div>
-<%end%>
+	<%end%>
+</div>
 
 
 

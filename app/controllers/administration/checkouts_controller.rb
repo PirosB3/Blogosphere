@@ -3,7 +3,7 @@ class Administration::CheckoutsController < ApplicationController
    
     def index
            # Get a list of all the checkouts that have not been sent
-        checkouts = Checkout.where(:sent => false)
+        checkouts = Checkout.all
         @unsent_checkouts = checkouts.select do |checkout|
             checkout.magazines.any? do |magazine|
             magazine.purchase_type == 'print'
@@ -12,10 +12,10 @@ class Administration::CheckoutsController < ApplicationController
     end
 
     def show 
-        @checkout = Checkout.where(:id => params[:id].to_i)
+        @checkout = Checkout.find(params[:id])
         # @user = User.where(:id => @checkout[0].user_id)
         #select all the print magazines in the purchase
-        @checkout_print_magazines = @checkout[0].magazines.select do |magazine|
+        @checkout_print_magazines = @checkout.magazines.select do |magazine|
             magazine.purchase_type =="print"
         end
 
@@ -31,7 +31,7 @@ class Administration::CheckoutsController < ApplicationController
         checkout.save
 
         flash[:notice] = "You have successfully updated checkout #{checkout.id}"
-        redirect_to administation_checkouts_path 
+        redirect_to administration_checkouts_path
         #this is going to be update, when the link is clicked then I can have a Javascript popup saying are you sure all the items in this checkout have been posted
     #Then is can update the checkouts status to sent: true and redirect_back to the checkout that it was on
     end
