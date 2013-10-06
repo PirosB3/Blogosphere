@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     # as a helper method. If the cart exists, it will fetch that
     # if not it will create a new one
     unless session[:cart_items]
-      session[:cart_items] = []
+      initialize_new_cart
     end
     return session[:cart_items]
   end
@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
   		magazine.price
     end
     prices.sum
+  end
+
+  def initialize_new_cart
+      session[:cart_items] = []
   end
 end

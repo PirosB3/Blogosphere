@@ -13,7 +13,7 @@
 		<h5>Postcode: <%=@checkout.post_code%></h5>
 	</div>
 	<div class="span2 btn update_postage_status">
-		<%= button_to "Click once sent", [:administration, @checkout], :method => :put, :class => 'administration_form' %>
+		<%= button_to "Click once sent", [:administration, @checkout], :method => :put, :data => { confirm: 'Are you sure?'}%>
 	</div>
 </div>
 

@@ -1,5 +1,5 @@
 class CheckoutController < ApplicationController
-	before_filter :authenticate_user!, :only => [:create]
+	before_filter :authenticate_user!
 
 	def get_purchase_information
 		@to_purchase_magazines = get_cart_magazines
@@ -8,7 +8,7 @@ class CheckoutController < ApplicationController
 		@has_at_least_a_post = @to_purchase_magazines.any? do |magazine|
 			magazine.purchase_type == 'print'
 		end
-		@packaging_price = @has_at_least_a_post ? 1.5 : 0
+		@packaging_price = @has_at_least_a_post ? 2 : 0
 
 		@subtotal = @total_price_magazines + @packaging_price
 	end
@@ -20,7 +20,6 @@ class CheckoutController < ApplicationController
 
 	def create
 		get_purchase_information
-		binding.pry
 		@checkout = Checkout.new(params[:checkout])
 		binding.pry
 		@checkout.is_by_post = @has_at_least_a_post
@@ -54,9 +53,11 @@ class CheckoutController < ApplicationController
 		@to_purchase_magazines.each do |magazine|
 			@checkout.magazines.push(magazine)
 			@checkout.save
-		end
 
-			
+		end
+		initialize_new_cart
+		binding.pry
+
 		has_at_least_a_e_magazine = @to_purchase_magazines.any? do |magazine|
 										 	magazine.purchase_type == 'e-book'
 										end
@@ -64,6 +65,7 @@ class CheckoutController < ApplicationController
 		mandrill_mailer(has_at_least_a_e_magazine, @checkout.stripe_transaction_id)
 	end
 
+	private
 	def mandrill_mailer(checkout_type, transaction_id)
 		binding.pry
 		@checkout_transaction_id = transaction_id

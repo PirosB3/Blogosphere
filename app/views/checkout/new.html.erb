@@ -3,7 +3,6 @@
 
   <div class="span4 offset1 shipping_address">
     <% if @checkout.errors.any? %>
-      <% binding.pry%>
       <div id="error_explanation">
         <h2><%= pluralize(@checkout.errors.count, "error") %> prohibited this user from being saved:</h2>
 
@@ -30,7 +29,7 @@
         data-amount="<%= @subtotal%>"
   	    data-name="Blogosphere"
   	    data-description="Amount Payable: £<%= @subtotal%>"
-  	    data-image="/128x128.png">
+  	    data-image="<%= image_path('128x128.png')%>">
       </script>
     <% end %>
   </div>
