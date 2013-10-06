@@ -1,4 +1,6 @@
 class Administration::CheckoutsController < ApplicationController
+	http_basic_authenticate_with :name => ENV['AUTH_USERNAME'], :password => ENV['AUTH_PASSWORD']
+
     def index
         # Get a list of all the checkouts that have not been sent
         checkouts = Checkout.where(:sent => false)
