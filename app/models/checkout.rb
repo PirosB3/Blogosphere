@@ -1,7 +1,7 @@
 class Checkout < ActiveRecord::Base
 
 	attr_accessor :is_by_post
-  attr_accessible :address, :post_code, :city
+  attr_accessible :address, :post_code, :city, :address_line_1, :address_line_2, :county, :country
   belongs_to :user
 
   has_many :checkout_magazines

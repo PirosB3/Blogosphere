@@ -1,9 +1,9 @@
 <%=render 'layouts/header'%>
-<div class="span1 sign_in_column_one">
-</div>
-<%binding.pry%>
-<h2>Thanks, your payment was successful</h2> 
 
-<% if @checkout_type == true %>
-	<h3>Follow this link www.google.com to access the e_magazine</h3>
-<%end%>
+<div class="span 10 offset1 confirmation_page">
+	<h2>Thanks, your payment was successful, you will be sent an email with your confirmation code</h2> 
+
+	<% if @checkout_type == true %>
+		<h2>Follow this link www.google.com to access the e_magazine</h2>
+	<%end%>
+</div>

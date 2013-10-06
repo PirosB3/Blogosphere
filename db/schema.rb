@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924112643) do
+ActiveRecord::Schema.define(:version => 20131006110940) do
 
   create_table "checkout_magazines", :force => true do |t|
     t.integer  "checkout_id"
@@ -30,9 +30,12 @@ ActiveRecord::Schema.define(:version => 20130924112643) do
     t.integer  "total_price"
     t.string   "stripe_transaction_id"
     t.boolean  "sent"
-    t.string   "address"
     t.string   "post_code"
     t.string   "city"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "county"
+    t.string   "country"
   end
 
   create_table "magazines", :force => true do |t|

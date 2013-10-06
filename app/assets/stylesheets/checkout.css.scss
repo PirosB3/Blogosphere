@@ -9,12 +9,17 @@
 	margin-top:4%;
 }
 
-.shipping_address input{
+.shipping_address input, .shipping_address select{
 	width:73%;
 }
 
 .shipping_address h3, .shipping_address p input, .cards_accepted h3{
 	font-family:'infinityregular'
+}
+
+.drop_down_country select{
+	font-family:'infinityregular';
+	width:78%;
 }
 
 .stripe-button-el{
@@ -44,4 +49,9 @@
 .checkout_basket_items{
 	margin-top: 2%;
 	margin-left: 7%;
+}
+
+.confirmation_page h2{
+	font-family:'infinityregular';
+	padding:5% 5% 2% 5%;
 }

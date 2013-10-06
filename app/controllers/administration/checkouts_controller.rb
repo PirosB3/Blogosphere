@@ -1,4 +1,6 @@
 class Administration::CheckoutsController < ApplicationController
+# http_basic_authenticate_with :name => ENV['AUTH_USERNAME'], :password => ENV['AUTH_PASSWORD']
+   
     def index
            # Get a list of all the checkouts that have not been sent
         checkouts = Checkout.where(:sent => false)
@@ -10,9 +12,8 @@ class Administration::CheckoutsController < ApplicationController
     end
 
     def show 
-        @checkout = Checkout.where(:id => params[:id])
-        binding.pry
-        @user = User.where(:id => @checkout[0].user_id)
+        @checkout = Checkout.where(:id => params[:id].to_i)
+        # @user = User.where(:id => @checkout[0].user_id)
         #select all the print magazines in the purchase
         @checkout_print_magazines = @checkout[0].magazines.select do |magazine|
             magazine.purchase_type =="print"
@@ -25,10 +26,12 @@ class Administration::CheckoutsController < ApplicationController
     end
 
     def update
-        checkout = Checkout.where(:id => 90)
-        @checkout[0].update(@checkout[0].id, :sent => 'true')
-        @checkout.save
-        redirect_to administation_checkout_path 
+        checkout = Checkout.find(params[:id])
+        checkout.sent = true
+        checkout.save
+
+        flash[:notice] = "You have successfully updated checkout #{checkout.id}"
+        redirect_to administation_checkouts_path 
         #this is going to be update, when the link is clicked then I can have a Javascript popup saying are you sure all the items in this checkout have been posted
     #Then is can update the checkouts status to sent: true and redirect_back to the checkout that it was on
     end

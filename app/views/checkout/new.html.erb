@@ -1,29 +1,28 @@
 <%=render 'layouts/header'%>
 <div class="checkout_view clearfix fluid-row">
 
-<!-- <div class="span8 offset1">
-	<%# @to_purchase_magazines.each do |magazine| %>
-    <p><b><%#= magazine.name %></b>purchase as: <%#= magazine.purchase_type %></p>
-  <%# end %>
+  <div class="span4 offset1 shipping_address">
+    <% if @checkout.errors.any? %>
+      <% binding.pry%>
+      <div id="error_explanation">
+        <h2><%= pluralize(@checkout.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-   <%# if @checkout.errors.any? %>
-    <div id="error_explanation">
-      <h2><%#= pluralize(@checkout.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+        <% @checkout.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-      <%# @checkout.errors.full_messages.each do |msg| %>
-        <li><%#= msg %></li>
-      <%# end %>
-      </ul>
-    </div>
-  <%# end %> -->
-  <div class="span4 offset1 shipping_address"
     <%= form_for @checkout do |f| %>
       <% if @has_at_least_a_post %>
         <h3>ENTER SHIPPING ADDRESS HERE</h3>
-        <p><%= f.text_field :address, placeholder: 'Enter your address here', :required => true %></p>
-        <p><%= f.text_field 'post_code', placeholder: 'Enter your city here', :required => true %></p>
-        <p><%= f.text_field 'city', placeholder: 'Enter your postcode here', :required => true %></p>
+        <p><%= f.text_field :address_line_1, placeholder: 'Address Line 1', :required => true %></p>
+        <p><%= f.text_field :address_line_2, placeholder: 'Address Line 2'%></p>
+        <p><%= f.text_field :city, placeholder: 'Enter your city here', :required => true %></p>
+        <p><%= f.text_field :post_code, placeholder: 'Enter your postcode here', :required => true %></p>
+        <p class="drop_down_country"><%= f.select :country, options_for_select(["United Kingdom"])%></p>
       <% end %>
   	  <script
   	    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"

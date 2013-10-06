@@ -8,7 +8,7 @@ class CheckoutController < ApplicationController
 		@has_at_least_a_post = @to_purchase_magazines.any? do |magazine|
 			magazine.purchase_type == 'print'
 		end
-		@packaging_price = @has_at_least_a_post ? 2 : 0
+		@packaging_price = @has_at_least_a_post ? 1.5 : 0
 
 		@subtotal = @total_price_magazines + @packaging_price
 	end
@@ -19,9 +19,10 @@ class CheckoutController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		get_purchase_information
+		binding.pry
 		@checkout = Checkout.new(params[:checkout])
+		binding.pry
 		@checkout.is_by_post = @has_at_least_a_post
 		unless @checkout.valid?
 			return render 'new'
@@ -59,11 +60,12 @@ class CheckoutController < ApplicationController
 		has_at_least_a_e_magazine = @to_purchase_magazines.any? do |magazine|
 										 	magazine.purchase_type == 'e-book'
 										end
+		binding.pry
 		mandrill_mailer(has_at_least_a_e_magazine, @checkout.stripe_transaction_id)
-		
 	end
 
 	def mandrill_mailer(checkout_type, transaction_id)
+		binding.pry
 		@checkout_transaction_id = transaction_id
 		@checkout_type = checkout_type
 		user_email = current_user.email

@@ -1,18 +1,19 @@
 <%=render 'layouts/header'%>
-<div class="span12">
+<div class="span12 checkout_show_container">
 	<div class="span4">
 		<h5>Checkout_id: <%=@checkout[0].stripe_transaction_id%></h5>
 	</div>
 	<div class="span3">
-		<h5>User Email: <%=@user[0].email%></h5>
+		<h5>User Email: <%=@checkout[0].user.email%></h5>
 	</div>
 	<div class="span3">
-		<h5>Address: <%=@checkout[0].address%></h5>
+		<h5>Addres Line 1 : <%=@checkout[0].address_line_1%></h5>
+		<h5>Address Line 2: <%=@checkout[0].address_line_2%></h5>
 		<h5>City: <%=@checkout[0].city%></h5>
 		<h5>Postcode: <%=@checkout[0].post_code%></h5>
 	</div>
-	<div class="span1 btn">
-		<h5><%= link_to "Posted: #{@checkout[0].sent} (click to edit)", controller: 'administration/checkouts', action: "update"%></h5>
+	<div class="span2 btn update_postage_status">
+		<%= button_to "Click once sent", [:administration, @checkout[0]], :method => :put %>
 	</div>
 </div>
 
