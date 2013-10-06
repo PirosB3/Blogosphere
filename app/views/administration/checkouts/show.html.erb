@@ -1,22 +1,22 @@
 <%=render 'layouts/header'%>
 <div class="span12">
 	<div class="span4">
-		<h5>Checkout_id: <%=@checkout[0].stripe_transaction_id%></h5>
+		<h5>Checkout_id: <%=@checkout.stripe_transaction_id%></h5>
 	</div>
 	<div class="span3">
-		<h5>User Email: <%=@user[0].email%></h5>
+		<h5>User Email: <%=@checkout.user%></h5>
 	</div>
 	<div class="span3">
-		<h5>Address: <%=@checkout[0].address%></h5>
-		<h5>City: <%=@checkout[0].city%></h5>
-		<h5>Postcode: <%=@checkout[0].post_code%></h5>
+		<h5>Address: <%=@checkout.address%></h5>
+		<h5>City: <%=@checkout.city%></h5>
+		<h5>Postcode: <%=@checkout.post_code%></h5>
 	</div>
 	<div class="span1 btn">
-		<h5><%= link_to "Posted: #{@checkout[0].sent} (click to edit)", controller: 'administration/checkouts', action: "update"%></h5>
+		<%= button_to "Click once sent", [:administration, @checkout], :method => :put %>
 	</div>
 </div>
 
-<%@checkout_print_magazines.each do |magazine| %>
+<% @checkout_print_magazines.each do |magazine| %>
 <div class="span12">
 	<div class="span4">
 		<h5><%=magazine.issue_number%></h5>

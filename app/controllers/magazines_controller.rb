@@ -25,7 +25,6 @@ class MagazinesController < ApplicationController
 
   def destroy_checkout
     @magazine = Magazine.where(:name => params[:magazine_name])
-    # binding.pry
     @checkout = Checkout.where(:user_id => current_user.id, :magazine_id => @magazine[0].id)
     @checkout.destroy_all
   end
