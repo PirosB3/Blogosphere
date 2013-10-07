@@ -29,6 +29,8 @@ gem 'devise'
 gem 'pry'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mandrill_mailer'
+
+gem 'aws-sdk'
 # gem 'spree', "2.0.0"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

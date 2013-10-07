@@ -62,5 +62,7 @@ module Blogosphere
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.s3 = {:bucket_name => "blogosphere", :expiry_in_minutes => 5}
   end
 end

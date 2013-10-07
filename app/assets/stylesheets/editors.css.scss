@@ -2,12 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .editors{
-	margin-top:3%!important;
-	margin-bottom:3%!important;
-	margin-left:3%!important;
+	background:url('dots.png');
 }
 
 .editors p {
 	font-family: infinity;
 	font-size:1.5em;
+}
+
+.editors .span12{
+	margin-top: 4%;
+	margin-left: 11%;
 }
