@@ -8,25 +8,21 @@ class MagazinesController < ApplicationController
   end
 
   def show
-  	if user_signed_in?
-	  	@user = current_user
-	  	respond_to do |format|
-	    format.html
-	    format.json { render :json => @user}
-	    end
-	end
-  end
+        #check each checkout to see if magazine contains an e-book
+    checkout_with_e_book = current_user.checkouts.select do |checkout|
+      checkout.magazines.any? do |magazine|
+      magazine.purchase_type == 'e-book'
+      end
+    end
 
-  def create_checkout
-  	@user = current_user
-    @id = params[:id]
-    @checkout = Checkout.create(:magazine_id => params[:id], :user_id => current_user.id)
-  end
-
-  def destroy_checkout
-    @magazine = Magazine.where(:name => params[:magazine_name])
-    # binding.pry
-    @checkout = Checkout.where(:user_id => current_user.id, :magazine_id => @magazine[0].id)
-    @checkout.destroy_all
+    @purchased_e_magazine = []
+    #This method can be improved - it is iterating through each checkout and each magazine and pushing it into an array if it is an e-magazine
+    e_magazines = checkout_with_e_book.each do |checkout|
+      checkout.magazines.each do |magazine|
+        if magazine.purchase_type =="e-book"
+           @purchased_e_magazine << magazine
+        end
+      end
+    end
   end
 end
