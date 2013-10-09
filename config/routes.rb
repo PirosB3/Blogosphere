@@ -11,8 +11,8 @@ Blogosphere::Application.routes.draw do
   resources :cart, :only => [:index, :create, :destroy] 
 
   # Magazines is the controller that shows all the magazines in a list.
+  get "magazines/purchased", :as => 'purchased_magazines'
   resources :magazines, :only => [:index, :show]
-  get "magazines/purchased"
 
   # Checkout is the controller that makes the payment and saves the payment information to the DB
   resources :checkout, :as => :checkouts, :only => [:new, :create]
