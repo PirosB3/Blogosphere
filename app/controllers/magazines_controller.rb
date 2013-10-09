@@ -7,8 +7,9 @@ class MagazinesController < ApplicationController
     @magazine = Magazine.all
   end
 
-  def show
-        #check each checkout to see if magazine contains an e-book
+  def purchased
+    #why does this not work!!
+    #check each checkout to see if magazine contains an e-book
     checkout_with_e_book = current_user.checkouts.select do |checkout|
       checkout.magazines.any? do |magazine|
       magazine.purchase_type == 'e-book'
@@ -25,4 +26,9 @@ class MagazinesController < ApplicationController
       end
     end
   end
+
+  def show
+
+  end
+
 end
